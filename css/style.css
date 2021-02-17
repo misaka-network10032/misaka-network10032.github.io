@@ -4687,6 +4687,13 @@ img.lazyload:not(.placeholder).loaded {
 .md .video-wrap {
   margin: 1.5rem auto;
 }
+body {
+  background: url("cover.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+}
 #safearea {
   display: block;
 }
