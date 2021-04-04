@@ -516,7 +516,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/03/14/%E6%9D%82%E9%A1%B9/>http://example.com/2021/03/14/%E6%9D%82%E9%A1%B9/</a></p>
+                <p>本文永久链接是：<a href=https://misaka-network10032.github.io/2021/03/14/%E6%9D%82%E9%A1%B9/>https://misaka-network10032.github.io/2021/03/14/%E6%9D%82%E9%A1%B9/</a></p>
               
             
           </blockquote>
@@ -558,7 +558,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/03/14/%E6%9D%82%E9%A1%B9/&title=杂项 - misaka_10032&summary=记录一下一些可能会用到的比较有趣的技巧和神仙思路。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://misaka-network10032.github.io/2021/03/14/%E6%9D%82%E9%A1%B9/&title=杂项 - misaka_10032&summary=记录一下一些可能会用到的比较有趣的技巧和神仙思路。"
           
           >
           
@@ -570,7 +570,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/03/14/%E6%9D%82%E9%A1%B9/&title=杂项 - misaka_10032&summary=记录一下一些可能会用到的比较有趣的技巧和神仙思路。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://misaka-network10032.github.io/2021/03/14/%E6%9D%82%E9%A1%B9/&title=杂项 - misaka_10032&summary=记录一下一些可能会用到的比较有趣的技巧和神仙思路。"
           
           >
           
@@ -582,7 +582,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/03/14/%E6%9D%82%E9%A1%B9/&title=杂项 - misaka_10032&summary=记录一下一些可能会用到的比较有趣的技巧和神仙思路。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://misaka-network10032.github.io/2021/03/14/%E6%9D%82%E9%A1%B9/&title=杂项 - misaka_10032&summary=记录一下一些可能会用到的比较有趣的技巧和神仙思路。"
           
           >
           
@@ -611,6 +611,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
     <div class="prev-next">
+      
+        <a class='prev' href='/2021/04/04/LeetCode%E4%BA%8C%E7%99%BE%E9%A2%98%E7%BA%AA%E5%BF%B5/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>LeetCode二百题纪念</p>
+          <p class='content'>LeetCode两百题纪念🎉★,°:.☆(￣▽￣)/$:.°★ 。🎉
+
+这篇两百题纪念发的真是有够晚，都过去半个多月了为什么第一篇纪念文是二百题纪念而不是一百题纪念，当然是因为一百题的时候这...</p>
+        </a>
       
       
         <a class='next' href='/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/'>
@@ -1186,7 +1193,7 @@ function setSearchService() {
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'https://misaka-network10032.github.io' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1204,7 +1211,7 @@ function setSearchService() {
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'https://misaka-network10032.github.io' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1226,7 +1233,7 @@ function setSearchService() {
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'https://misaka-network10032.github.io' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增
