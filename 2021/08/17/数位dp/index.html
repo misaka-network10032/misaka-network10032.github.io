@@ -684,6 +684,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
+        <a class='prev' href='/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>AStar、双向bfs</p>
+          <p class='content'>A*(A Star)算法是一种很常用的路径查找和图形遍历算法,它可以被认为是Dijkstra算法的扩展。相较于普通的bfs算法，借助启发函数的引导，A*算法通常拥有更好的性能。
+
+既然提到了di...</p>
+        </a>
+      
       
         <a class='next' href='/2021/05/02/happy-birthday/'>
           <p class='title'>happy birthday!<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -1107,7 +1114,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     var valine = new Valine();
-    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":true}, {
       el: '#valine_container',
       path: path,
       placeholder: pagePlaceholder,
