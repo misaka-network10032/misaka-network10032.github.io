@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,9 +22,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: c++ - misaka_10032</title>
+  <title>凸包算法 - misaka_10032</title>
+  
+    <meta name="keywords" content="算法,c++">
   
 
+  
+    <meta name="description" content="凸包是一个计算几何中的概念，其形式化定义为在一个实数向量空间$V$中，对于给定集合$X$，所有包含$X$的凸集的交集$S$被称为$X$的凸包。在二维欧几里得空间中，凸包可想象为将最外层的点连接起来构成的凸多边形，它能包含点集中所有的点。">
   
 
   <!-- feed -->
@@ -355,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div>
           
@@ -430,415 +432,289 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/">
+      <h1 class="title">
         凸包算法
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/1.jpg" class="lazyload" data-srcset="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>凸包是一个计算几何中的概念，其形式化定义为在一个实数向量空间$V$中，对于给定集合$X$，所有包含$X$的凸集的交集$S$被称为$X$的<code>凸包</code>。在二维欧几里得空间中，凸包可想象为将最外层的点连接起来构成的凸多边形，它能包含点集中所有的点。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+      </h1>
+      <div class='new-meta-box'>
         
-        <time>2022-04-23</time>
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i0.hdslb.com/bfs/face/2470ed00689a6ff6c9b0d53a6701f57fde089ab0.jpg@96w_96h_1c.webp">
+    <p>misaka10032</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 23, 2022</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="凸包算法" data-path="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <p><img src="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/1.jpg" class="lazyload" data-srcset="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>凸包是一个计算几何中的概念，其形式化定义为在一个实数向量空间$V$中，对于给定集合$X$，所有包含$X$的凸集的交集$S$被称为$X$的<code>凸包</code>。在二维欧几里得空间中，凸包可想象为将最外层的点连接起来构成的凸多边形，它能包含点集中所有的点。</p>
+<a id="more"></a>
+<p>常见的求解二维凸包的算法有很多种，这里只简单介绍一下Andrew算法。<br>以<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/erect-the-fence/">LeetCode587为例</a>，这道题可以说是一道二维凸包的模板题。</p>
+<p>Andrew算法正是用于求解凸包上的所有点（围成所有点的最小周长），其算法逻辑将凸包分为「上凸壳」和「下凸壳」，并分别求出，如下图所示，蓝色分割线将凸包分为两部分：<br><img src="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/2.png" class="lazyload" data-srcset="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>Andrew算法的流程如下：</p>
+<ul>
+<li><strong><em>1</em></strong>. 对所有点进行排序，先根据$x$坐标排升序，后根据$y$坐标排升序;根据$x$排升序的目的，是为了我们能够往一个方向画出凸包边缘（从左往右画出一半凸壳，从右往左画出另外一半），而将$y$升序目的是可以确保一旦我们现在从$a$到$b$进行连线，那么$a$到$b$之间的所有点能够确保被围住;</li>
+<li><strong><em>2</em></strong>. 使用栈来维护所有凸包上的点，或者说凸包上的边，会更为准确，因为凸包起点元素会在栈中出现两次（首尾），因此更为准确的描述应该是使用栈维护凸包的所有的边，栈中相邻元素即代表凸包上的一条边;</li>
+<li><strong><em>3</em></strong>. 分别「从左往右」和「从右往左」处理排序好的所有点，来分别画出凸包的上下两部分，根据画的是第一部分还是第二部分，维护栈内元的处理逻辑稍有不同：<ul>
+<li>第一部分(上凸壳):<ul>
+<li><strong><em>3.1</em></strong> 若栈内元素少于2个，由于组成一条线至少需要两个点，说明此时第一条边都还没画出，直接将元素添加到栈中；</li>
+<li><strong><em>3.2</em></strong> 若栈内元素不少于2个，考虑是否要将栈顶的边删掉（由栈顶前两个元素组成的边）假设栈顶元素为$b$，栈顶元素的下一位为$a$，即栈顶存在一条$a$到$b$的边，当前处理到的点为$c$，此时我们根据$ac$边是否在$ab$边的顺时针方向来决定是否要将$ab$边去掉。<br><img src="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/3.png" class="lazyload" data-srcset="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"></li>
+</ul>
+</li>
+<li>第二部分(下凸壳):<ul>
+<li><strong><em>3.3</em></strong> 逻辑同理，唯一需要注意的是，第一部分的凸包边我们不能删去，假定处理完第一部分凸包，我们栈内有$m$个元素，我们需要将上述「栈顶元素不少于2个」的逻辑替换为「栈顶元素大于$m$个」，同时已参与到凸包第一部分的点，不能再考虑，因此需要额外使用一个$vis$数组来记录使用过的点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>为了方便取得栈顶的前两位元素，我们使用数组实现栈。<br>具体的AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; points;</span><br><span class="line"></span><br><span class="line">pair&lt;int,int&gt; sub(pair&lt;int,int&gt; a,pair&lt;int,int&gt; b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">make_pair</span>(a.first-b.first,a.second-b.second);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cross</span><span class="params">(<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a,<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.first*b.second-a.second*b.first;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">getarea</span><span class="params">(<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a,<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; b,<span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cross(sub(b,a),sub(c,a));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; outerTrees(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; trees) &#123;</span><br><span class="line">    <span class="keyword">int</span> n=trees.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) points.emplace_back(<span class="built_in">make_pair</span>(trees[i][<span class="number">0</span>],trees[i][<span class="number">1</span>]));</span><br><span class="line">    sort(points.begin(),points.end());</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">stack</span><span class="params">(n+<span class="number">10</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">vis</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> tp=<span class="number">0</span>; <span class="comment">//栈顶指针</span></span><br><span class="line">    tp++;</span><br><span class="line">    <span class="built_in">stack</span>[tp]=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">//第一轮，寻找上凸壳</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; c=points[i];</span><br><span class="line">        <span class="keyword">while</span>(tp&gt;=<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a=points[<span class="built_in">stack</span>[tp<span class="number">-1</span>]]; <span class="comment">//栈顶次元素</span></span><br><span class="line">            <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; b=points[<span class="built_in">stack</span>[tp]];  <span class="comment">//栈顶元素</span></span><br><span class="line">            <span class="keyword">if</span>(getarea(a,b,c)&lt;<span class="number">0</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                vis[<span class="built_in">stack</span>[tp]]=<span class="number">0</span>;</span><br><span class="line">                tp--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        tp++;</span><br><span class="line">        <span class="built_in">stack</span>[tp]=i;</span><br><span class="line">        vis[i]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//第二轮，从后往前，寻找下凸壳</span></span><br><span class="line">    <span class="keyword">int</span> size=tp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i]==<span class="number">1</span>)  <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; c=points[i];</span><br><span class="line">        <span class="keyword">while</span>(tp&gt;size)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a=points[<span class="built_in">stack</span>[tp<span class="number">-1</span>]];</span><br><span class="line">            <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; b=points[<span class="built_in">stack</span>[tp]];</span><br><span class="line">            <span class="keyword">if</span>(getarea(a,b,c)&lt;<span class="number">0</span>)  tp--;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        tp++;</span><br><span class="line">        <span class="built_in">stack</span>[tp]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;tp;i++)  <span class="comment">//起始节点可能会在栈中出现两次</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">temp</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">        temp[<span class="number">0</span>]=points[<span class="built_in">stack</span>[i]].first;</span><br><span class="line">        temp[<span class="number">1</span>]=points[<span class="built_in">stack</span>[i]].second;</span><br><span class="line">        ans.emplace_back(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>end☆~</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://misaka-network10032.github.io/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/>https://misaka-network10032.github.io/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-04-23T16:09:56+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Apr 23, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>算法</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/c/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>c++</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-    <h2 class="article-title" >
-      <a href="/2022/04/01/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85/">
-        数位dp的一些补充
-      </a>
-    </h2>
-  
-  <div class='md'>
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://misaka-network10032.github.io/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/&title=凸包算法 - misaka_10032&summary=凸包是一个计算几何中的概念，其形式化定义为在一个实数向量空间$V$中，对于给定集合$X$，所有包含$X$的凸集的交集$S$被称为$X$的凸包。在二维欧几里得空间中，凸包可想象为将最外层的点连接起来构成的凸多边形，它能包含点集中所有的点。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
     
-      <p><img src="/2022/04/01/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85/1.jpg" class="lazyload" data-srcset="/2022/04/01/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>update！</p>
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://misaka-network10032.github.io/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/&title=凸包算法 - misaka_10032&summary=凸包是一个计算几何中的概念，其形式化定义为在一个实数向量空间$V$中，对于给定集合$X$，所有包含$X$的凸集的交集$S$被称为$X$的凸包。在二维欧几里得空间中，凸包可想象为将最外层的点连接起来构成的凸多边形，它能包含点集中所有的点。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://misaka-network10032.github.io/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/&title=凸包算法 - misaka_10032&summary=凸包是一个计算几何中的概念，其形式化定义为在一个实数向量空间$V$中，对于给定集合$X$，所有包含$X$的凸集的交集$S$被称为$X$的凸包。在二维欧几里得空间中，凸包可想象为将最外层的点连接起来构成的凸多边形，它能包含点集中所有的点。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time>2022-04-01</time>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2022/04/01/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85/'>
-            Read More
-          </a>
-        </div>
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/'>
+          <p class='title'>如何用鸟类实现网络传输协议<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+鸟联网(IP over Avian Carriers,IPoAC)是一个理论上使用诸如信鸽等鸟类来传输网际协议(即IP协议)数据的通讯提案。
+
+最早在1990年4月1日，D. Waitzman...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/">
-        AStar、双向bfs
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/1.jpg" class="lazyload" data-srcset="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br><code>A*</code>(A Star)算法是一种很常用的路径查找和图形遍历算法,它可以被认为是Dijkstra算法的扩展。相较于普通的bfs算法，借助启发函数的引导，<code>A*</code>算法通常拥有更好的性能。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-01-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/08/17/%E6%95%B0%E4%BD%8Ddp/">
-        数位dp
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/08/17/%E6%95%B0%E4%BD%8Ddp/1.jpg" class="lazyload" data-srcset="/2021/08/17/%E6%95%B0%E4%BD%8Ddp/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>数位dp就是套模板 ——lwz</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-17</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/08/17/%E6%95%B0%E4%BD%8Ddp/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/04/%E5%BF%AB%E9%80%9F%E5%B9%82/">
-        快速幂
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/04/04/%E5%BF%AB%E9%80%9F%E5%B9%82/1.jpg" class="lazyload" data-srcset="/2021/04/04/%E5%BF%AB%E9%80%9F%E5%B9%82/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>「快速幂算法」，存在递归和迭代两个版本。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-04</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/04/%E5%BF%AB%E9%80%9F%E5%B9%82/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/14/%E6%9D%82%E9%A1%B9/">
-        杂项
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/03/14/%E6%9D%82%E9%A1%B9/1.jpg" class="lazyload" data-srcset="/2021/03/14/%E6%9D%82%E9%A1%B9/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>记录一下一些可能会用到的比较有趣的技巧和神仙思路。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-14</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/14/%E6%9D%82%E9%A1%B9/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/">
-        字典树
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/1.jpg" class="lazyload" data-srcset="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>字典树，即Trie树，是一种哈希树的变种的树形结构。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/">
-        前缀和
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/1.jpg" class="lazyload" data-srcset="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>前缀和是使用一个数组，来储存在当前点之前且包括该点的所有元素的和的一种算法。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-02</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
-        并查集
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.png" class="lazyload" data-srcset="/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>并查集是一种简洁和优雅的数据结构，这一数据结构可以管理一系列不相交的集合，并支持合并和查询两种操作。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-19</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-    
-  
+
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -846,103 +722,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">misaka_10032</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <a href="/tags/c/" style="font-size: 24px; color: #555">c++</a> <a href="/tags/hexo/" style="font-size: 19px; color: #777">hexo</a> <a href="/tags/markdown/" style="font-size: 14px; color: #999">markdown</a> <a href="/tags/railgun/" style="font-size: 14px; color: #999">railgun</a> <a href="/tags/%E6%91%B8%E9%B1%BC/" style="font-size: 14px; color: #999">摸鱼</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 19px; color: #777">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">计算机网络</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -951,8 +738,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="凸包算法";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
