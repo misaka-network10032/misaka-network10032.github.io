@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -26,9 +22,14 @@
 
   <!-- 页面元数据 -->
   
-  <title>misaka_10032</title>
+  <title>kosaraju算法求解强连通分量 - misaka_10032</title>
+  
+    <meta name="keywords" content="算法,c++">
   
 
+  
+    <meta name="description" content="
+kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。">
   
 
   <!-- feed -->
@@ -357,7 +358,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div>
           
@@ -433,277 +434,308 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
+
+
+  
+  <div class="article-meta" id="top">
     
     
+    
+      <h1 class="title">
+        kosaraju算法求解强连通分量
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i0.hdslb.com/bfs/face/2470ed00689a6ff6c9b0d53a6701f57fde089ab0.jpg@96w_96h_1c.webp">
+    <p>misaka10032</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 19, 2022</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/14/%E6%9D%82%E9%A1%B9/">
-        杂项
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/03/14/%E6%9D%82%E9%A1%B9/1.jpg" class="lazyload" data-srcset="/2021/03/14/%E6%9D%82%E9%A1%B9/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>记录一下一些可能会用到的比较有趣的技巧和神仙思路。</p>
-    
+      <div id="lc-pv" data-title="kosaraju算法求解强连通分量" data-path="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-14</time>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <p><img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.jpg" class="lazyload" data-srcset="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"></p>
+<p>kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。</p>
+<a id="more"></a>
+<p>对于无向图连通分量的求解，只需要通过一次对原图的DFS搜索便可以很好的解决，但同样的问题放到有向图身上，就有一点麻烦了，以下面的这个有向图的强连通分量的求解为例：</p>
+<div align="center">
+    <img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.png" class="lazyload" data-srcset="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+</div>
+
+<p>如果只是简单的在原图上进行DFS的话，可以发现，DFS搜索的时候会横跨两个强连通分量，导致我们无法区分搜索得到的结点是否属于同一个强连通分量。kosaraju算法的想法是，将每一个强连通分量看成是一个大的结点，这样之后，整张图就变成一个有向无环图了，并且在这个DAG中的每条边均是从一个强连通分量指向另一个强连通分量。</p>
+<div align="center">
+    <img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/2.png" class="lazyload" data-srcset="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+</div>
+
+<p>并且，在原图中，若存在边<code>(u,v)</code>,即有一条有向边从强连通分量<code>u</code>指向强连通分量<code>v</code>。那么，<code>u</code>的结束时间会大于<code>v</code>的结束时间;换句话说，每条边总是指向结束时间更小的强连通分量。相应的，在转置<code>G^T</code>中，每条边则总是指向结束时间更大的强连通分量。</p>
+<p>那么，选取结束时间最晚的结点，其所对应的强连通分量的结束时间必然是最大的。而在转置<code>G^T</code>中每条边总是指向结束时间更大的强通分量，因为现在考虑的强连通分量已经拥有最大的结束时间，那么就没有从这个强连通分量指向别的强连通分量的边。因此，可以保证对这个选取的顶点做DFS,不会搜索到别的连通分量的顶点。</p>
+<p>由此，可得出kosaraju算法的基本流程：</p>
+<ul>
+<li>对原图进行后序DFS,得到原图的“逆拓扑序”(引号是因为原图中是存在环的，并不存在拓扑排序，当然可以理解成进行缩点之后的连通分量的逆拓扑序)</li>
+<li>将“逆拓扑序”存入栈中，之后从栈顶依次取出，在原图的反图上按照这个顺序进行DFS</li>
+<li><ul>
+<li>从节点1出发，能走到  2 ，3，4 ， 所以{1 , 2 , 3 , 4 }是一个强连通分量</li>
+</ul>
+</li>
+<li><ul>
+<li>从节点5出发，无路可走，所以{ 5 }是一个强连通分量</li>
+</ul>
+</li>
+<li><ul>
+<li>从节点6出发，无路可走，所以{ 6 }是一个强连通分量</li>
+</ul>
+</li>
+</ul>
+<p>自此Kosaraju Algorithm完毕，这个算法只需要两遍DFS即可，是一个比较易懂的求强连通分量的算法。</p>
+<p> 附上一个模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/B3609">洛谷B3609</a>以及AC代码：<br> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; edge;  <span class="comment">//使用邻接表建图</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="keyword">edge_t</span>; <span class="comment">//反图 </span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; visit;</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;x,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x[<span class="number">0</span>]&lt;y[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(visit[x]==<span class="number">1</span>)  <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> t=edge[x].size();</span><br><span class="line">	visit[x]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(edge[x][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	s.push(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">r_dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; ret)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(visit[x]==<span class="number">1</span>)  <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="keyword">edge_t</span>[x].size();</span><br><span class="line">	visit[x]=<span class="number">1</span>;</span><br><span class="line">	ret.emplace_back(x);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		r_dfs(<span class="keyword">edge_t</span>[x][i],ret);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,m;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	edge.resize(n);</span><br><span class="line">	<span class="keyword">edge_t</span>.resize(n);</span><br><span class="line">	visit.resize(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		<span class="keyword">if</span>(x==y)  <span class="keyword">continue</span>;</span><br><span class="line">		edge[x<span class="number">-1</span>].emplace_back(y<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">edge_t</span>[y<span class="number">-1</span>].emplace_back(x<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(visit[i]==<span class="number">1</span>)  <span class="keyword">continue</span>;</span><br><span class="line">		dfs(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)  visit[i]=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">	<span class="keyword">while</span>(s.empty()==<span class="literal">false</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> t=s.top();</span><br><span class="line">		s.pop();</span><br><span class="line">		<span class="keyword">if</span>(visit[t]==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">			r_dfs(t,temp);</span><br><span class="line">			sort(temp.begin(),temp.end());</span><br><span class="line">			ans.emplace_back(temp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans.size()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	sort(ans.begin(),ans.end(),cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ans.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;ans[i].size();j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;ans[i][j]+<span class="number">1</span>&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>现在考虑按问题中的方式用原图来做第二次深度优先搜索。注意到在原图中,每条边总是指向结束时间更小的强连通分量。 因此，如果我们能找到结束时间最小的强连通分量，并按照结束时间递增的方式来依次进行dfs，也是能得到各个不同的强连通分量的。但问题是，一个顶点的结束时间是最小的，_并不能保证它所对应的强连通分量的结束时间是最小的_。如下图的例子所示，按照搜索路径<code>1-&gt;3-&gt;5-&gt;8</code>，<code>8</code>是最早结束的结点，但是<code>5-&gt;8</code>并不是最早结束的强连通分量。</p>
+<div align="center">
+    <img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/3.png" class="lazyload" data-srcset="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+</div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shadowland/p/5876307.html">Kosaraju 算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/chaotalk/article/details/115428271?utm_medium=distribute.wap_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-115428271-blog-109176537.wap_relevant_featuresortv7&spm=1001.2101.3001.4242.1&utm_relevant_index=1">图解：有向环、拓扑排序与Kosaraju算法</a></li>
+</ul>
+<p>end☆~</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/03/14/%E6%9D%82%E9%A1%B9/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/>https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-10-19T23:51:22+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 19, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>算法</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/c/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>c++</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-    <h2 class="article-title" >
-      <a href="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/">
-        字典树
-      </a>
-    </h2>
-  
-  <div class='md'>
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/&title=kosaraju算法求解强连通分量 - misaka_10032&summary=
+kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
     
-      <p><img src="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/1.jpg" class="lazyload" data-srcset="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>字典树，即Trie树，是一种哈希树的变种的树形结构。</p>
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/&title=kosaraju算法求解强连通分量 - misaka_10032&summary=
+kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/&title=kosaraju算法求解强连通分量 - misaka_10032&summary=
+kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time>2021-03-09</time>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/'>
-            Read More
-          </a>
-        </div>
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2022/06/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%9F%BA%E4%BA%8Eyolov5%E7%9A%84%E8%BD%A6%E8%BE%86%E6%A3%80%E6%B5%8B/'>
+          <p class='title'>/机器学习大作业/基于yolov5的车辆检测<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>使用yolov5，基于UA-detrac数据集进行训练，完成对于车辆的识别和种类的检测。
+
+yolov5yolo是一个用于目标模块检测的单阶段模型。目前Ultralytics LLC团队已经发布...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/">
-        前缀和
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/1.jpg" class="lazyload" data-srcset="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>前缀和是使用一个数组，来储存在当前点之前且包括该点的所有元素的和的一种算法。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-02</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
+  </article>
 
-</div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/19/markdown%E6%93%8D%E4%BD%9C/">
-        markdown操作
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/02/19/markdown%E6%93%8D%E4%BD%9C/1.jfif" class="lazyload" data-srcset="/2021/02/19/markdown%E6%93%8D%E4%BD%9C/1.jfif" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>markdown的一些基本操作</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-19</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/19/markdown%E6%93%8D%E4%BD%9C/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
 
-</div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
-        并查集
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.png" class="lazyload" data-srcset="/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>并查集是一种简洁和优雅的数据结构，这一数据结构可以管理一系列不相交的集合，并支持合并和查询两种操作。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-19</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/19/%E5%B9%B6%E6%9F%A5%E9%9B%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
 
-</div>
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/17/test/">
-        First Post
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p><img src="/2021/02/17/test/1.jpg" class="lazyload" data-srcset="/2021/02/17/test/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="test"><br>#前言<br>菜鸡的博客开张了</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-17</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/17/test/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 2
-        </p>
-        
-      </div>
-    
-  
 
 
 </div>
@@ -713,98 +745,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">misaka_10032</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <a href="/tags/c/" style="font-size: 24px; color: #555">c++</a> <a href="/tags/hexo/" style="font-size: 19px; color: #777">hexo</a> <a href="/tags/markdown/" style="font-size: 14px; color: #999">markdown</a> <a href="/tags/railgun/" style="font-size: 14px; color: #999">railgun</a> <a href="/tags/%E6%91%B8%E9%B1%BC/" style="font-size: 14px; color: #999">摸鱼</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 19px; color: #777">日常</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">机器学习</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px; color: #999">计算机网络</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
     </div>
   </section>
 
-
-  
 
   
 
@@ -819,8 +775,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="kosaraju算法求解强连通分量";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
