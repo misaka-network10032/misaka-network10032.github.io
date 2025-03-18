@@ -32,9 +32,9 @@
 <meta property="og:image" content="https://lancern.xyz/images/posts/2024/12/std-hive/skipfield.svg">
 <meta property="og:image" content="https://lancern.xyz/images/posts/2024/12/std-hive/free-block-link.svg">
 <meta property="og:image" content="https://lancern.xyz/images/posts/2024/12/std-hive/free-slot-link.svg">
-<meta property="og:image" content="https://misaka-network10032.github.io/1.png">
+<meta property="og:image" content="https://misaka-network10032.github.io/2025/03/16/c-26-std-hive%E7%AE%80%E6%9E%90/1.png">
 <meta property="article:published_time" content="2025-03-16T15:24:29.000Z">
-<meta property="article:modified_time" content="2025-03-16T15:44:35.187Z">
+<meta property="article:modified_time" content="2025-03-18T15:28:49.082Z">
 <meta property="article:author" content="misaka">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
@@ -194,9 +194,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2025-03-16 23:24:29 / Modified: 23:44:35" itemprop="dateCreated datePublished" datetime="2025-03-16T23:24:29+08:00">2025-03-16</time>
+      <time title="Created: 2025-03-16 23:24:29" itemprop="dateCreated datePublished" datetime="2025-03-16T23:24:29+08:00">2025-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-18 23:28:49" itemprop="dateModified" datetime="2025-03-18T23:28:49+08:00">2025-03-18</time>
     </span>
 
   
@@ -261,7 +267,8 @@
 <p><img src="https://lancern.xyz/images/posts/2024/12/std-hive/free-slot-link.svg" alt="Free slot link"></p>
 <p>通过跳跃域即可得知连续“空泡”的长度，因此空闲链表并没有将所有的“空泡”全部链接起来，而只需要链接每一段连续“空泡”的第一个“空泡”即可。通过这样的两级空闲链表，插入操作可以在 的时间内找到下一个可用的“空泡”，并在 的时间内将“空泡”分配出去。</p>
 <p>此外，空泡链表节点在实现上其实是复用了空泡的存储空间，空泡链表是一个双向链表，利用空泡的存储空间存储了指向上一个和下一个空泡的链接指针。可以使用union共用体来实现空间的复用，减少内存的消耗。</p>
-<p><img src="/1.png" alt="test"></p>
+<img src="/2025/03/16/c-26-std-hive%E7%AE%80%E6%9E%90/1.png" class="" title="test">
+
 <p>块、跳跃域和空闲链表是 <code>std::hive</code> 的核心数据结构。利用这些数据结构，<code>std::hive</code> 可以在 的时间内完成对象的插入、删除和单步遍历操作，并满足其功能性要求。</p>
 <h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>本节将简单介绍 <code>std::hive</code> 提供的接口。由于 <code>std::hive</code> 是一个标准容器，其接口设计和其他标准容器的接口非常类似：</p>
 <ul>
