@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"misaka-network10032.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="A*(A Star)算法是一种很常用的路径查找和图形遍历算法,它可以被认为是Dijkstra算法的扩展。相较于普通的bfs算法，借助启发函数的引导，A*算法通常拥有更好的性能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AStar、双向bfs">
+<meta property="og:url" content="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/index.html">
+<meta property="og:site_name" content="misaka_10032">
+<meta property="og:description" content="A*(A Star)算法是一种很常用的路径查找和图形遍历算法,它可以被认为是Dijkstra算法的扩展。相较于普通的bfs算法，借助启发函数的引导，A*算法通常拥有更好的性能。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/2.png">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/3.png">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/4.png">
+<meta property="article:published_time" content="2022-01-08T10:52:18.000Z">
+<meta property="article:modified_time" content="2025-03-16T05:54:23.304Z">
+<meta property="article:author" content="misaka">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/2.png">
+
+
+<link rel="canonical" href="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/","path":"2022/01/08/AStar、双向bfs/","title":"AStar、双向bfs"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AStar、双向bfs | misaka_10032</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">misaka_10032</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="misaka"
+      src="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+  <p class="site-author-name" itemprop="name">misaka</p>
+  <div class="site-description" itemprop="description">褴褛飞旋</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://misaka-network10032.github.io/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+      <meta itemprop="name" content="misaka">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="misaka_10032">
+      <meta itemprop="description" content="褴褛飞旋">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AStar、双向bfs | misaka_10032">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AStar、双向bfs
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-08 18:52:18" itemprop="dateCreated datePublished" datetime="2022-01-08T18:52:18+08:00">2022-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-16 13:54:23" itemprop="dateModified" datetime="2025-03-16T13:54:23+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><code>A*</code>(A Star)算法是一种很常用的路径查找和图形遍历算法,它可以被认为是Dijkstra算法的扩展。相较于普通的bfs算法，借助启发函数的引导，<code>A*</code>算法通常拥有更好的性能。</p>
+<span id="more"></span>
+<p>既然提到了dij，就先贴一个堆优化的dij的模板,虽然和后续<code>A*</code>算法的模板没什么关系 <del>普通的优先队列，至于什么斐波那契堆就算了</del></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; dis;</span><br><span class="line">priority_queue&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; q;</span><br><span class="line">vector&lt;vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; &gt; map;  <span class="comment">//采用邻接表存图</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dis.<span class="built_in">emplace_back</span>(INT_MAX);</span><br><span class="line">    &#125;</span><br><span class="line">    dis[n]=<span class="number">0</span>;</span><br><span class="line">    q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(<span class="number">0</span>,n));</span><br><span class="line">    <span class="keyword">while</span>(q.<span class="built_in">empty</span>()==<span class="literal">false</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(q.<span class="built_in">empty</span>()==<span class="literal">false</span> &amp;&amp; (-q.<span class="built_in">top</span>().first&gt;dis[q.<span class="built_in">top</span>().second]))</span><br><span class="line">        &#123;</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q.<span class="built_in">empty</span>()==<span class="literal">true</span>)  <span class="keyword">break</span>;</span><br><span class="line">        <span class="type">int</span> x=q.<span class="built_in">top</span>().second;</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;map[x].<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> y=map[x][i].first;</span><br><span class="line">            <span class="keyword">if</span>(dis[y]&gt;dis[x]+map[x][i].second)</span><br><span class="line">            &#123;</span><br><span class="line">                dis[y]=dis[x]+map[x][i].second;</span><br><span class="line">                q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(-dis[y],y));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>A*</code>算法通过下面这个函数来计算每个节点的优先级，并在运算过程中，每次从优先队列中选取<code>f(n)</code>值最小（优先级最高）的节点作为下一个待遍历的节点,来达到加快搜索的目的。<br>$$f(n)&#x3D;g(n)+h(n)$$<br>其中：<br>·<code>f(n)</code>是<code>节点n</code>的综合优先级。当我们选择下一个要遍历的节点时，我们总会选取综合优先级最高（值最小）的节点。<br>·<code>g(n)</code> 是节点n距离起点的代价。<br>·<code>h(n)</code>是节点n距离终点的预计代价，这也就是A*算法的启发函数。<br>$f(n)&#x3D;g(n)+h(n)$其实相当于经过结点n的一条预估最短路径的大小。<br>不难发现，启发函数会影响<code>A*</code>算法的行为，也影响着<code>A*</code>算法的性能。通过调节启发函数我们可以控制算法的速度和精确度。在一些情况，未必需要最短路径，而是希望能够尽快找到一个路径就行。</p>
+<p>·在极端情况下，当启发函数<code>h(n)</code>始终为0，则将由<code>g(n)</code>决定节点的优先级，此时算法就退化成了<code>Dijkstra</code>算法。<br>·如果<code>h(n)</code>始终小于等于节点<code>n</code>到终点的代价，则<code>A*</code>算法保证一定能够找到最短路径。但是当<code>h(n)</code>的值越小，算法将遍历越多的节点，也就导致算法越慢。<br>·如果<code>h(n)</code>完全等于节点<code>n</code>到终点的代价，则<code>A*</code>算法将找到最佳路径，并且速度很快。可惜的是，并非所有场景下都能做到这一点。因为在没有达到终点之前，我们很难确切算出距离终点还有多远。<br>·如果<code>h(n)</code>的值比节点<code>n</code>到终点的代价要大，则<code>A*</code>算法不能保证找到最短路径，不过此时会很快。<br>在另外一个极端情况下，如果<code>h(n)</code>相较于<code>g(n)</code>大很多，则此时只有<code>h(n)</code>产生效果，这也就变成了最佳优先搜索。</p>
+<p>具体的模板如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">astar</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">geth</span><span class="params">(<span class="type">const</span> string&amp; status,<span class="type">const</span> string&amp; target)</span>  <span class="comment">//编写启发函数</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">astar</span>(<span class="type">const</span> string&amp; status, <span class="type">const</span> string&amp; target, <span class="type">int</span> g): status_&#123;status&#125;, g_&#123;g&#125;, h_&#123;<span class="built_in">geth</span>(status, target)&#125; &#123;</span><br><span class="line">        f_ = g_ + h_;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt; (<span class="type">const</span> astar&amp; that) <span class="type">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> f_ &gt; that.f_;</span><br><span class="line">    &#125;</span><br><span class="line">    string status_;</span><br><span class="line">    <span class="type">int</span> f_;</span><br><span class="line">    <span class="type">int</span> g_;</span><br><span class="line">    <span class="type">int</span> h_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>有了模板，现在就可以写两道题来练练手了。实际上，<code>A*</code>算法模板本身并没有什么难度，主要的难度在于如何选取合适的启发函数。</p>
+<p>leetcode 752. 打开转盘锁[<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/open-the-lock/]">https://leetcode-cn.com/problems/open-the-lock/]</a><br>题目描述：<br>你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’ 。每个拨轮可以自由旋转：例如把 ‘9’ 变为 ‘0’，’0’ 变为 ‘9’ 。每次旋转都只能旋转一个拨轮的一位数字。</p>
+<p>锁的初始数字为 ‘0000’ ，一个代表四个拨轮的数字的字符串。</p>
+<p>列表 deadends 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。</p>
+<p>字符串 target 代表可以解锁的数字，你需要给出解锁需要的最小旋转次数，如果无论如何不能解锁，返回 -1 。</p>
+<p> </p>
+<p>示例 1:</p>
+<p>输入：deadends &#x3D; [“0201”,”0101”,”0102”,”1212”,”2002”], target &#x3D; “0202”<br>输出：6<br>解释：<br>可能的移动序列为 “0000” -&gt; “1000” -&gt; “1100” -&gt; “1200” -&gt; “1201” -&gt; “1202” -&gt; “0202”。<br>注意 “0000” -&gt; “0001” -&gt; “0002” -&gt; “0102” -&gt; “0202” 这样的序列是不能解锁的，<br>因为当拨动到 “0102” 时这个锁就会被锁定。<br>示例 2:</p>
+<p>输入: deadends &#x3D; [“8888”], target &#x3D; “0009”<br>输出：1<br>解释：<br>把最后一位反向旋转一次即可 “0000” -&gt; “0009”。<br>示例 3:</p>
+<p>输入: deadends &#x3D; [“8887”,”8889”,”8878”,”8898”,”8788”,”8988”,”7888”,”9888”], target &#x3D; “8888”<br>输出：-1<br>解释：<br>无法旋转到目标数字且不被锁定。<br>示例 4:</p>
+<p>输入: deadends &#x3D; [“0000”], target &#x3D; “8888”<br>输出：-1
+ </p>
+<p>提示：</p>
+<p>·1 &lt;&#x3D; deadends.length &lt;&#x3D; 500<br>·deadends[i].length &#x3D;&#x3D; 4<br>·target.length &#x3D;&#x3D; 4<br>·target 不在 deadends 之中<br>·target 和 deadends[i] 仅由若干位数字组成</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/open-the-lock">https://leetcode-cn.com/problems/open-the-lock</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>这道题目可以选取当前转盘锁数字和目标数字之间的差值作为启发函数，因为转换过程中需要避开会导致转盘锁锁定的数字，因此实际的转换路径一定会比该路径长；同时$H(status)−H(next_status)&lt;&#x3D;D(status,next_status)$，因此该启发函数一定也是可接纳的。在这种情况下，同一节点只会被加入优先队列一次，并搜索不超过一次，即当我们从优先队列中取出节点<code>x</code>时，$G(x)$一定等于从起点到节点<code>x</code>的「实际」最短路径的长度。</p>
+<p>AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">astar</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">geth</span><span class="params">(<span class="type">const</span> string&amp; status,<span class="type">const</span> string&amp; target)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> ret=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> dist=<span class="built_in">abs</span>(<span class="built_in">int</span>(status[i])-<span class="built_in">int</span>(target[i]));</span><br><span class="line">            ret=ret+<span class="built_in">min</span>(dist,<span class="number">10</span>-dist);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">astar</span>(<span class="type">const</span> string&amp; status, <span class="type">const</span> string&amp; target, <span class="type">int</span> g): status_&#123;status&#125;, g_&#123;g&#125;, h_&#123;<span class="built_in">geth</span>(status, target)&#125; &#123;</span><br><span class="line">        f_ = g_ + h_;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt; (<span class="type">const</span> astar&amp; that) <span class="type">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> f_ &gt; that.f_;</span><br><span class="line">    &#125;</span><br><span class="line">    string status_;</span><br><span class="line">    <span class="type">int</span> f_;</span><br><span class="line">    <span class="type">int</span> g_;</span><br><span class="line">    <span class="type">int</span> h_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">openLock</span><span class="params">(vector&lt;string&gt;&amp; deadends, string target)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n=deadends.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>(target==<span class="string">&quot;0000&quot;</span>)  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="function">unordered_set&lt;string&gt; <span class="title">s</span><span class="params">(deadends.begin(),deadends.end())</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">find</span>(target)!=s.<span class="built_in">end</span>())  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">find</span>(<span class="string">&quot;0000&quot;</span>)!=s.<span class="built_in">end</span>())  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    priority_queue&lt;astar&gt; q;</span><br><span class="line">    q.<span class="built_in">emplace</span>(<span class="string">&quot;0000&quot;</span>,target,<span class="number">0</span>);</span><br><span class="line">    unordered_set&lt;string&gt; hash=&#123;<span class="string">&quot;0000&quot;</span>&#125;;</span><br><span class="line">    <span class="keyword">while</span>(q.<span class="built_in">empty</span>()==<span class="literal">false</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        astar x=q.<span class="built_in">top</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(x.status_==target)  <span class="keyword">return</span> x.g_;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string temp1=x.status_;</span><br><span class="line">            string temp2=x.status_;</span><br><span class="line">            <span class="keyword">if</span>(x.status_[i]==<span class="string">&#x27;0&#x27;</span>)     temp1[i]=<span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">            <span class="keyword">else</span>                      temp1[i]=temp1[i]<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">if</span>(x.status_[i]==<span class="string">&#x27;9&#x27;</span>)     temp2[i]=<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="keyword">else</span>                      temp2[i]=temp2[i]<span class="number">+1</span>;</span><br><span class="line">            <span class="keyword">if</span>(hash.<span class="built_in">find</span>(temp1)==hash.<span class="built_in">end</span>() &amp;&amp; s.<span class="built_in">find</span>(temp1)==s.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                q.<span class="built_in">emplace</span>(temp1,target,x.g_<span class="number">+1</span>);</span><br><span class="line">                hash.<span class="built_in">insert</span>(temp1);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(hash.<span class="built_in">find</span>(temp2)==hash.<span class="built_in">end</span>() &amp;&amp; s.<span class="built_in">find</span>(temp2)==s.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                q.<span class="built_in">emplace</span>(temp2,target,x.g_<span class="number">+1</span>);</span><br><span class="line">                hash.<span class="built_in">insert</span>(temp2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>leetcode 127. 单词接龙[<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-ladder/]">https://leetcode-cn.com/problems/word-ladder/]</a><br>字典 wordList 中从单词 beginWord 和 endWord 的 转换序列 是一个按下述规格形成的序列：</p>
+<p>序列中第一个单词是 beginWord 。<br>序列中最后一个单词是 endWord 。<br>每次转换只能改变一个字母。<br>转换过程中的中间单词必须是字典 wordList 中的单词。<br>给你两个单词 beginWord 和 endWord 和一个字典 wordList ，找到从 beginWord 到 endWord 的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回 0。</p>
+<p> <br>示例 1：</p>
+<p>输入：beginWord &#x3D; “hit”, endWord &#x3D; “cog”, wordList &#x3D; [“hot”,”dot”,”dog”,”lot”,”log”,”cog”]<br>输出：5<br>解释：一个最短转换序列是 “hit” -&gt; “hot” -&gt; “dot” -&gt; “dog” -&gt; “cog”, 返回它的长度 5。<br>示例 2：</p>
+<p>输入：beginWord &#x3D; “hit”, endWord &#x3D; “cog”, wordList &#x3D; [“hot”,”dot”,”dog”,”lot”,”log”]<br>输出：0<br>解释：endWord “cog” 不在字典中，所以无法进行转换。
+ </p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; beginWord.length &lt;&#x3D; 10<br>endWord.length &#x3D;&#x3D; beginWord.length<br>1 &lt;&#x3D; wordList.length &lt;&#x3D; 5000<br>wordList[i].length &#x3D;&#x3D; beginWord.length<br>beginWord、endWord 和 wordList[i] 由小写英文字母组成<br>beginWord !&#x3D; endWord<br>wordList 中的所有字符串 互不相同</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-ladder">https://leetcode-cn.com/problems/word-ladder</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p><del>第一次遇到的时候直接cv睡觉了</del>其实和上面这道题类似，只是必须使用在字典中的单词才能转换，因此可以使用当前状态对应的单词和endWord不同的字母数作为启发函数，其一定小于实际的转换路径。同时$H(status)−H(next_status)&#x3D;[0,1,-1]&lt;&#x3D;D(status,next_status)$。<br>这道题的实际难点其实应该是如何选取合适的搜索策略。由于较大的数据范围，使得我们不可能选用遍历所有字典中的单词，将相差单词数为1的两个单词之间建立一条边之中这种时间复杂度为$O(n^2)$的方式来建图。实际上，单词的长度&lt;&#x3D;10，同时所有的单词均由小写字母构成。可以枚举所有的修改可能，并检查这种修改是否在字典中即可。<br>AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">astar</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">geth</span><span class="params">(<span class="type">const</span> string&amp; status,<span class="type">const</span> string&amp; target)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> ret=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n=status.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(status[i]!=target[i])  ret++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">astar</span>(<span class="type">const</span> string&amp; status, <span class="type">const</span> string&amp; target, <span class="type">int</span> g): status_&#123;status&#125;, g_&#123;g&#125;, h_&#123;<span class="built_in">geth</span>(status, target)&#125; &#123;</span><br><span class="line">        f_ = g_ + h_;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt; (<span class="type">const</span> astar&amp; that) <span class="type">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> f_ &gt; that.f_;</span><br><span class="line">    &#125;</span><br><span class="line">    string status_;</span><br><span class="line">    <span class="type">int</span> f_;</span><br><span class="line">    <span class="type">int</span> g_;</span><br><span class="line">    <span class="type">int</span> h_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">ladderLength</span><span class="params">(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n=wordList.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">unordered_set&lt;string&gt; <span class="title">s</span><span class="params">(wordList.begin(),wordList.end())</span></span>;</span><br><span class="line">    priority_queue&lt;astar&gt; q;</span><br><span class="line">    q.<span class="built_in">emplace</span>(beginWord,endWord,<span class="number">0</span>);</span><br><span class="line">    unordered_set&lt;string&gt; hash=&#123;beginWord&#125;;</span><br><span class="line">    <span class="keyword">while</span>(q.<span class="built_in">empty</span>()==<span class="literal">false</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        astar x=q.<span class="built_in">top</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="comment">//cout&lt;&lt;x.status_&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">if</span>(x.status_==endWord)  <span class="keyword">return</span> x.g_<span class="number">+1</span>;</span><br><span class="line">        <span class="type">int</span> t=x.status_.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">char</span> j=<span class="string">&#x27;a&#x27;</span>;j&lt;=<span class="string">&#x27;z&#x27;</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(j==x.status_[i])  <span class="keyword">continue</span>;</span><br><span class="line">                string temp1=x.status_;</span><br><span class="line">                temp1[i]=j;</span><br><span class="line">                <span class="keyword">if</span>(hash.<span class="built_in">find</span>(temp1)==hash.<span class="built_in">end</span>() &amp;&amp; s.<span class="built_in">find</span>(temp1)!=s.<span class="built_in">end</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    q.<span class="built_in">emplace</span>(temp1,endWord,x.g_<span class="number">+1</span>);</span><br><span class="line">                    hash.<span class="built_in">insert</span>(temp1);</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果直接使用普通的bfs，会造成搜索空间增长过快，即下图所示的情况。在普通的BFS实现中，空间的瓶颈其实主要取决于搜索空间中的最大宽度。</p>
+<img src="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/2.png" class="" title="test">
+<p>使用双向bfs，同时从两个方向开始搜索，可以很好的解决这一问题。同时从两个方向开始搜索的话，可以快速减少层数，从而解决搜索空间增长过快的问题。具体的运行过程可以总结为：<br>·创建「两个队列」分别用于两个方向的搜索；<br>·创建「两个哈希表」用于「解决相同节点重复搜索」和「记录转换次数」；<br>·为了尽可能让两个搜索方向“平均”，每次从队列中取值进行扩展时，先判断哪个队列容量较少；<br>·如果在搜索过程中「搜索到对方搜索过的节点」，说明找到了最短路径。</p>
+<img src="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/3.png" class="" title="test">
+<p>使用双向bfs的AC代码如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">(queue&lt;string&gt;&amp; d1,unordered_map&lt;string,<span class="type">int</span>&gt;&amp; hash1,unordered_map&lt;string,<span class="type">int</span>&gt;&amp; hash2,unordered_set&lt;string&gt; &amp;s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> k=d<span class="number">1.</span><span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;k&gt;=<span class="number">0</span>;k--)</span><br><span class="line">    &#123;</span><br><span class="line">        string x=d<span class="number">1.f</span>ront();</span><br><span class="line">        <span class="comment">//cout&lt;&lt;k&lt;&lt;&quot; &quot;&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;hash1[x]&lt;&lt;endl;</span></span><br><span class="line">        d<span class="number">1.</span><span class="built_in">pop</span>();</span><br><span class="line">        <span class="type">int</span> n=x.<span class="built_in">length</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="string">&#x27;a&#x27;</span>;j&lt;=<span class="string">&#x27;z&#x27;</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(x[i]==j)  <span class="keyword">continue</span>;</span><br><span class="line">                string temp=x;</span><br><span class="line">                temp[i]=j;</span><br><span class="line">                <span class="keyword">if</span>(s.<span class="built_in">find</span>(temp)!=s.<span class="built_in">end</span>() &amp;&amp; hash<span class="number">2.f</span>ind(temp)!=hash<span class="number">2.</span><span class="built_in">end</span>())  <span class="keyword">return</span> hash1[x]+hash2[temp];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="built_in">find</span>(temp)!=s.<span class="built_in">end</span>() &amp;&amp; hash<span class="number">1.f</span>ind(temp)==hash<span class="number">1.</span><span class="built_in">end</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    d<span class="number">1.</span><span class="built_in">push</span>(temp);</span><br><span class="line">                    hash1[temp]=hash1[x]<span class="number">+1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">ladderLength</span><span class="params">(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList)</span> </span>&#123;</span><br><span class="line">    <span class="function">unordered_set&lt;string&gt; <span class="title">s</span><span class="params">(wordList.begin(),wordList.end())</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">find</span>(endWord)==s.<span class="built_in">end</span>())  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue&lt;string&gt; d1;  <span class="comment">//正向</span></span><br><span class="line">    queue&lt;string&gt; d2;  <span class="comment">//反向</span></span><br><span class="line">    unordered_map&lt;string,<span class="type">int</span>&gt; hash1; <span class="comment">//正向</span></span><br><span class="line">    unordered_map&lt;string,<span class="type">int</span>&gt; hash2; <span class="comment">//反向</span></span><br><span class="line">    d<span class="number">1.</span><span class="built_in">push</span>(beginWord);</span><br><span class="line">    hash1[beginWord]=<span class="number">0</span>;</span><br><span class="line">    d<span class="number">2.</span><span class="built_in">push</span>(endWord);</span><br><span class="line">    hash2[endWord]=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(d<span class="number">1.</span><span class="built_in">empty</span>()==<span class="literal">false</span> &amp;&amp; d<span class="number">2.</span><span class="built_in">empty</span>()==<span class="literal">false</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(d<span class="number">1.</span><span class="built_in">size</span>()&lt;=d<span class="number">2.</span><span class="built_in">size</span>())  ans=<span class="built_in">bfs</span>(d1,hash1,hash2,s);</span><br><span class="line">        <span class="keyword">else</span> ans=<span class="built_in">bfs</span>(d2,hash2,hash1,s);</span><br><span class="line">        <span class="keyword">if</span>(ans!=<span class="number">-1</span>)  <span class="keyword">return</span> ans<span class="number">+2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，在本题中，<code>for(;k&gt;=0;k--)</code>这一层的循环是必要的，即一定要将该层搜索完毕后，在开始下一层的搜索，否则可能会产生「回头路」，造成结果错误。举例如下图所示，可以通过这组测试样例来观察上述情况产生的原因：<br>“hbo”<br>“qbx”<br>[“abo”,”hco”,”hbw”,”ado”,”abq”,”hcd”,”hcj”,”hww”,”qbq”,”qby”,”qbz”,”qbx”,”qbw”]</p>
+<img src="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/4.png" class="" title="test">
+<p>end☆~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/17/%E6%95%B0%E4%BD%8Ddp/" rel="prev" title="数位dp">
+                  <i class="fa fa-angle-left"></i> 数位dp
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/01/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85/" rel="next" title="数位dp的一些补充">
+                  数位dp的一些补充 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">misaka</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"misaka-network10032.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="字典树，即Trie树，是一种哈希树的变种的树形结构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字典树">
+<meta property="og:url" content="https://misaka-network10032.github.io/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/index.html">
+<meta property="og:site_name" content="misaka_10032">
+<meta property="og:description" content="字典树，即Trie树，是一种哈希树的变种的树形结构。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://misaka-network10032.github.io/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/2.jpg">
+<meta property="article:published_time" content="2021-03-09T13:44:23.000Z">
+<meta property="article:modified_time" content="2025-03-16T05:59:32.922Z">
+<meta property="article:author" content="misaka">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://misaka-network10032.github.io/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/2.jpg">
+
+
+<link rel="canonical" href="https://misaka-network10032.github.io/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://misaka-network10032.github.io/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/","path":"2021/03/09/字典树/","title":"字典树"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>字典树 | misaka_10032</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">misaka_10032</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="misaka"
+      src="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+  <p class="site-author-name" itemprop="name">misaka</p>
+  <div class="site-description" itemprop="description">褴褛飞旋</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://misaka-network10032.github.io/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+      <meta itemprop="name" content="misaka">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="misaka_10032">
+      <meta itemprop="description" content="褴褛飞旋">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="字典树 | misaka_10032">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字典树
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-09 21:44:23" itemprop="dateCreated datePublished" datetime="2021-03-09T21:44:23+08:00">2021-03-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-16 13:59:32" itemprop="dateModified" datetime="2025-03-16T13:59:32+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>字典树，即Trie树，是一种哈希树的变种的树形结构。<span id="more"></span>利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希树高。<br>字典树本身具有如下的几点性质：<br>·根节点不包含字符，除根节点外的每一个子节点都包含一个字符<br>·从根节点到某一节点。路径上经过的字符连接起来，就是该节点对应的字符串<br>·每个节点的所有子节点包含的字符都不相同<br>一颗字典树的样子如下图所示：</p>
+<img src="/2021/03/09/%E5%AD%97%E5%85%B8%E6%A0%91/2.jpg" class="" title="test1">
+<p>通常字典树的查询时间复杂度是O(logL)，其中L是字符串的长度。通常建立的字典树是一颗26叉树，其实也就是包含了所有小写字母在内，对于可能包含其他字符的情况，可以通过增加孩子节点数目来对字典树能够处理的范围进行扩容。虽然字典树是一颗多叉树，但这种数据结构所涉及的操作相对简单，因此构建一颗字典树所需要的代码难度相对较小。ps.trie是<code>AC自动机</code>的一部分。<del>虽然还不太了解什么是AC自动机雾</del><br>以下便是字典树的模板实例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">truct node</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">struct</span> <span class="title class_">node</span> *next[<span class="number">26</span>];  <span class="comment">//孩子节点</span></span><br><span class="line">   <span class="type">int</span> num;  <span class="comment">//孩子节点的数目</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">node *<span class="title">creat</span><span class="params">()</span>  <span class="comment">//新建一颗字典树</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   node *p=<span class="keyword">new</span> node;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">       p-&gt;next[i]=<span class="literal">NULL</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   p-&gt;num=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string s,node *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> len=s.<span class="built_in">length</span>();</span><br><span class="line">    node *t=head;</span><br><span class="line">    node *p=head;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> c=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;nect[c]==<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            t=<span class="built_in">creat</span>();</span><br><span class="line">            p-&gt;next[c]=t;</span><br><span class="line">            p-&gt;num++;</span><br><span class="line">            p=p-&gt;next[c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            p=p-&gt;next[c];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(string s,node *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    node *p=head;</span><br><span class="line">    <span class="type">int</span> len=s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> c=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;next[c]==<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        p=p-&gt;next[c];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字典树就如同他的名字一样，如同字典般的结构，对于需要多次查询和包含前缀的问题的高效解决有着十足的优势。具体的使用示例便以LeetCode的1268题为例。[<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-suggestions-system/]">https://leetcode-cn.com/problems/search-suggestions-system/]</a><br>题目描述：<br>给你一个产品数组 products 和一个字符串 searchWord ，products  数组中每个产品都是一个字符串。</p>
+<p>请你设计一个推荐系统，在依次输入单词 searchWord 的每一个字母后，推荐 products 数组中前缀与 searchWord 相同的最多三个产品。如果前缀相同的可推荐产品超过三个，请按字典序返回最小的三个。</p>
+<p>请你以二维列表的形式，返回在输入 searchWord 每个字母后相应的推荐产品的列表。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：products &#x3D; [“mobile”,”mouse”,”moneypot”,”monitor”,”mousepad”], searchWord &#x3D; “mouse”<br>输出：[<br>[“mobile”,”moneypot”,”monitor”],<br>[“mobile”,”moneypot”,”monitor”],<br>[“mouse”,”mousepad”],<br>[“mouse”,”mousepad”],<br>[“mouse”,”mousepad”]<br>]<br>解释：按字典序排序后的产品列表是 [“mobile”,”moneypot”,”monitor”,”mouse”,”mousepad”]<br>输入 m 和 mo，由于所有产品的前缀都相同，所以系统返回字典序最小的三个产品 [“mobile”,”moneypot”,”monitor”]<br>输入 mou， mous 和 mouse 后系统都返回 [“mouse”,”mousepad”]<br>示例 2：</p>
+<p>输入：products &#x3D; [“havana”], searchWord &#x3D; “havana”<br>输出：[[“havana”],[“havana”],[“havana”],[“havana”],[“havana”],[“havana”]]<br>示例 3：</p>
+<p>输入：products &#x3D; [“bags”,”baggage”,”banner”,”box”,”cloths”], searchWord &#x3D; “bags”<br>输出：[[“baggage”,”bags”,”banner”],[“baggage”,”bags”,”banner”],[“baggage”,”bags”],[“bags”]]<br>示例 4：</p>
+<p>输入：products &#x3D; [“havana”], searchWord &#x3D; “tatiana”<br>输出：[[],[],[],[],[],[],[]]
+ </p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; products.length &lt;&#x3D; 1000<br>1 &lt;&#x3D; Σ products[i].length &lt;&#x3D; 2 * 10^4<br>products[i] 中所有的字符都是小写英文字母。<br>1 &lt;&#x3D; searchWord.length &lt;&#x3D; 1000<br>searchWord 中所有字符都是小写英文字母。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-suggestions-system">https://leetcode-cn.com/problems/search-suggestions-system</a><br>可以看到，题目要求中明确说明了<code>products[i]</code>中所有的字符都是小写英文字母，因此一颗标准的26叉的字典树便能很好的解决这一问题。当然，除了26叉这种暴力的解决方式外，使用哈希表也是一种很好的思路，本题LeetCode官方题解中的字典树便是利用和哈希表。但接下来我们还是以26叉树的思路来解决问题。字典树的结构已经很好的解决了题目对于前缀查询的要求，剩下需要解决的便是<code>products</code>数组中前缀与<code>searchWord</code>相同的最多三个产品并且按字典序返回最小的三个这一要求。我们可以在字典树中增加一个大小最多为三的优先队列，来保存符合当前前缀的单词，这一思路的来源便是第k大这一经典的问题。通过上述的修改，题目所要求的问题都得到了解决。<br>AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">node</span> *next[<span class="number">26</span>];</span><br><span class="line">    priority_queue&lt;string,vector&lt;string&gt;,less&lt;string&gt;&gt; words;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line"></span><br><span class="line"><span class="function">node *<span class="title">creat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    node *p=<span class="keyword">new</span> node;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        p-&gt;next[i]=<span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">three</span><span class="params">(node *head,string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head-&gt;words.<span class="built_in">push</span>(s);</span><br><span class="line">    <span class="keyword">while</span>(head-&gt;words.<span class="built_in">size</span>()&gt;<span class="number">3</span>)  head-&gt;words.<span class="built_in">pop</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string s,node *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> len=s.<span class="built_in">length</span>();</span><br><span class="line">    node *p=head;</span><br><span class="line">    node *t=head;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> c=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;next[c]==<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            t=<span class="built_in">creat</span>();</span><br><span class="line">            p-&gt;next[c]=t;</span><br><span class="line">            p=p-&gt;next[c];</span><br><span class="line">            <span class="built_in">three</span>(p,s);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p=p-&gt;next[c];</span><br><span class="line">            <span class="built_in">three</span>(p,s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">search</span><span class="params">(string s,node *head,<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    node *p=head;</span><br><span class="line">    <span class="type">int</span> len=s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> c=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;next[c]==<span class="literal">NULL</span>)  <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p=p-&gt;next[c];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> temp=p-&gt;words.<span class="built_in">size</span>();</span><br><span class="line">    ans[x].<span class="built_in">resize</span>(temp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;temp;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        string ch=p-&gt;words.<span class="built_in">top</span>();</span><br><span class="line">        ans[x][temp<span class="number">-1</span>-i]=ch;</span><br><span class="line">        p-&gt;words.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">suggestedProducts</span>(vector&lt;string&gt;&amp; products, string searchWord) &#123;</span><br><span class="line">    <span class="type">int</span> n=products.<span class="built_in">size</span>();</span><br><span class="line">    node *root=<span class="built_in">creat</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">insert</span>(products[i],root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> len=searchWord.<span class="built_in">length</span>();</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">temp</span>(len);</span><br><span class="line">    ans=temp;</span><br><span class="line">    string pre;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pre=pre+searchWord[i];</span><br><span class="line">        <span class="built_in">search</span>(pre,root,i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">执行用时: <span class="number">284</span> ms</span><br><span class="line">内存消耗: <span class="number">147.5</span> MB</span><br></pre></td></tr></table></figure>
+<p>end☆~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/02/%E5%89%8D%E7%BC%80%E5%92%8C/" rel="prev" title="前缀和">
+                  <i class="fa fa-angle-left"></i> 前缀和
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/14/%E6%9D%82%E9%A1%B9/" rel="next" title="杂项">
+                  杂项 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">misaka</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

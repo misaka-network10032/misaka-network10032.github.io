@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"misaka-network10032.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="鸟联网(IP over Avian Carriers,IPoAC)是一个理论上使用诸如信鸽等鸟类来传输网际协议(即IP协议)数据的通讯提案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何用鸟类实现网络传输协议">
+<meta property="og:url" content="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="misaka_10032">
+<meta property="og:description" content="鸟联网(IP over Avian Carriers,IPoAC)是一个理论上使用诸如信鸽等鸟类来传输网际协议(即IP协议)数据的通讯提案。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/1.jpg">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/2.jpg">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/3.jpg">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/4.png">
+<meta property="article:published_time" content="2022-04-05T12:11:28.000Z">
+<meta property="article:modified_time" content="2022-04-05T12:48:53.689Z">
+<meta property="article:author" content="misaka">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="摸鱼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/1.jpg">
+
+
+<link rel="canonical" href="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/","path":"2022/04/05/如何用鸟类实现网络传输协议/","title":"如何用鸟类实现网络传输协议"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何用鸟类实现网络传输协议 | misaka_10032</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">misaka_10032</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="misaka"
+      src="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+  <p class="site-author-name" itemprop="name">misaka</p>
+  <div class="site-description" itemprop="description">褴褛飞旋</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://misaka-network10032.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+      <meta itemprop="name" content="misaka">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="misaka_10032">
+      <meta itemprop="description" content="褴褛飞旋">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何用鸟类实现网络传输协议 | misaka_10032">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何用鸟类实现网络传输协议
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-04-05 20:11:28 / Modified: 20:48:53" itemprop="dateCreated datePublished" datetime="2022-04-05T20:11:28+08:00">2022-04-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/1.jpg" class="" title="test">
+
+<p>鸟联网(IP over Avian Carriers,IPoAC)是一个理论上使用诸如信鸽等鸟类来传输网际协议(即IP协议)数据的通讯提案。</p>
+<span id="more"></span>
+<p>最早在1990年4月1日，D. Waitzman在<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc1149">RFC 1149</a>中发布了这一提案，之后在1999年的<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc2549">RFC 2549</a>进行了更新。目前最新的相关的RFC文档则是在2011年4月1日发布的<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6214">RFC 6214</a>,其中详细讨论了如何将这一网络通讯手段应用到IPv6网络上。之后本文将基于这三篇RFC文档，进行简要的翻译和分析。</p>
+<p>在RFC 1149中，D. Waitzman指出利用诸如信鸽等鸟类来传输网际协议(即IP协议)数据的通讯方式对于城域网是十分有效的，同时参与网络通讯的鸟类提供的是一种高延迟、低吞吐量以及低海拔(相较于卫星通讯或者一些无线电通讯)的服务(Avian carriers can provide high delay, low throughput, and low altitude service.),相较于IEEE802.3，IPoAC可以提供点对点的3D通讯，无法实现广播通信。不过D. Waitzman指出在早春时节之外，许多载体可以在彼此之间没有明显干扰的情况下使用(but many carriers can be used without significant interference with each other,outside of early spring)。同时，上述载体本身具有碰撞避免的方法，提高了网络整体的可用性。</p>
+<p>传输的带宽与腿长相关，对于每个IP数据包来说，其MTU是可变的，并且出乎意料的随着载体年龄的增加而增加(The MTU is variable, and paradoxically, generally increases with increased carrier age.)。在受到数据报后，使用ORC光学扫描技术来讲数据报转换成可以使用通过电子传输的方式。IPoAC还具有内置的蠕虫检测和根除功能(An additional property is built-in worm detection and eradication.)需要注意的是，风暴会造成数据的丢失，对于传输路径的跟踪是自动生成的，这些跟踪痕迹将可以在木桩或者电线杆上被发现。</p>
+<img src="/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/2.jpg" class="" title="test">
+<center>一种典型的丢包情形</center>
+
+<p>RFC 2549则提出了如何提高鸟类承载者的服务质量，比如可以使用运输量更大的鸵鸟(Ostriches),不过在某种程度上这会导致网络从3D退化到2D，并且需要架设桥梁来帮助鸵鸟进行运输。对于服务质量的监控，可以通过在鸟类承载者的翅膀上加上条形码，在经过这个网络中类似路由器的中介站时，可以选择合适的队列，来对每个承载者挨个扫码来判断每个鸟类的服务质量。不过这些鸟类承载者可能会在队列的过程中睡觉。在队列过程中，可以使用红色油漆来标记数据报的删除(Packets MAY be marked for deletion using RED paint while enqueued)。一种以重量来作为排队策略的方法可以通过天平来实现：</p>
+<pre><code>                                                      __
+                                      _____/-----\   / o\
+                                     &lt;____   _____\_/    &gt;--
+                     +-----+              \ /    /______/
+                     | 10g |               /|:||/
+                     +-----+              /____/|
+                     | 10g |                    |
+                     +-----+          ..        X
+                        ===============================
+                                  ^
+                                  |
+                              =========
+</code></pre>
+<p>鸟类承载者如果等待了太长时间，会留下日志(log entries)<del>一种可以作为石墨烯催化剂的物质</del>,这一点在上图中也有所体现。使用鸟类承载者进行网络传输时，会消灭传输中的蜘蛛<del>spiders,指的是网络爬虫，虽然这里确实是实际意义上的蜘蛛</del>，从而减少网络通讯的流量。但是这些承载者会被镜子(流量镜像)所迷惑。</p>
+<p>不建议采用轮询调度算法，虽然轮询调度(知更鸟)会很好的改善网络，但是其不支持必要的自动寻回的功能(知更鸟作为候鸟迁徙的习性)。NATs也同样不建议使用，与许多协议一样，修改嵌入大脑的IP地址很困难，而且鸟类携带者可能会吃掉NATs<u>(不太明白这里NATs的指代，不过我倾向于指的是gnat:小昆虫)</u> 这样的网络同样是支持多播的，不过这需要使用克隆设备。一只鸟类承载者的平均存活时间(TTL)大概是15年，由于这一TTL相对过大，所以扩展环搜索算法的使用将受到限制。</p>
+<p>notice：</p>
+<ul>
+<li>鸽子的粪便会带来隐私问题。</li>
+<li>对于有陌生环境恐惧症的鸟类承载者在使用时将难以保障。</li>
+<li>关于哪种是现有技术，目前正在进行诉讼：载体还是蛋。<del>(neta先有鸡还是先有蛋)</del></li>
+</ul>
+<p>为了缓解迫在眉睫的IP地址的短缺问题，许多的服务提供商开始计划将服务转向IPv6，因此RFC 6214提出了如何将RFC 1149中的技术应用到IPv6网络上的一些想法。</p>
+<p>根据RFC 2460,用于连接的最小MTU是1280字节，并且根据RFC 1149中的描述，MTU随着载体年龄的增加而增加，这意味着需要较大年龄的承载者应用于IPv6网络上。但RFC 1149中并未给出精确的年龄与毫克以及字节之间的转换关系，不过通过其中为了说明所举的例子,计算得出我们至少需要1岁的个体来参与IPv6网络。并且MTU和承载者的年龄并非呈现出线性关系，其承载量的多少呈现出少-多-少的趋势。传输时间也会受到承载者年龄的影响，从而影响带宽延迟积，进而影响TCP的性能。</p>
+<p>为了提高效率，避免数据包在网络中传输时过度消耗能量，因此，帧格式将是存粹IPv6数据包，因此对于采用双协议栈的接收方必须检查每个数据包的前四位中的IP协议版本号，这是对IPv4和IPv6数据包的混合进行解复用的唯一方法。可以发现，这种传输方式不存在链路层。</p>
+<p>RFC 2549也适用于IPv6情况。然而，RFC 2549的作者没有考虑区分服务模型RFC 2474的可用性。在其流量类别字段RFC 2460中携带非默认区分服务代码点（DSCP）值的IPv6数据包必须使用绿色或蓝色墨水进行特殊编码，以便DSCP在外部可见。请注意，不得使用红色墨水，以避免与RFC 2549中规定的红色涂料的使用相混淆。</p>
+<p>RFC 2549没有考虑到不同类型的鸟类承载者对服务质量的影响。有些承载者速度很快，但只能携带非常小的有效载荷，并在短距离内运输；而另一些速度较慢，但可以携带大的有效载荷，并在非常长的距离内运输。根据数据包的DSCP值为数据包选择不同的承载者可能是合适的。实际上，根据RFC 2474，不同的承载者将实现不同的每跳行为。需要注意的是，鸽子是人类接触最多的可以预测其目的地的动物，因此鸟联网大多使用鸽子作为参考，因此常被错误地称为“鸽联网”，事实上的鸟联网并不等同于鸽联网，可以采用多种类型的鸟类来参与联网，而不仅仅局限于鸽子。</p>
+<p>在没有对等协议的情况下，通过类似承载者的区域路由时，可能会导致路由突然改变、数据包循环和无序交付。类似地，通过掠夺性承载者的区域路由可能会导致严重的数据包丢失。强烈建议在用于创建路由表的路由算法中考虑这些因素。实施者应该考虑基于策略的路由，以确保在掠夺性承载者盛行的区域路由周围可靠的分组传递。</p>
+<p>有证据表明，一些承载者倾向于吃掉其他承载者，然后吃掉原来的有效载荷。也许这提供了一种在IPv6有效负载中隧道IPv4数据包的新方法，反之亦然。(对于此处提出的这种隧道方法个人存在一定的疑问，参考RFC 2549，这样的隧道方法可能会导致数据包的严重损毁，以及难以获取)然而，在撰写本文时，脱封机制尚不清楚。<del>好吧这里提到了</del></p>
+<p>RFC 1149中的安全注意事项适用。此外，最近的经验表明传输部分会受到多种不同形式的拒绝服务攻击，尤其是在其驻留时。此外，缺少上述链路层标识符，再加上IPv6报头中缺少校验和，基本上意味着任何传输元素都可能被误认为任何其他元素，无法在网络层检测替换。使用某种上层安全机制似乎是一个非常好的主意。</p>
+<p>需要注意鸟类承载者可能带了的潜在疾病风险(例如H5N1),必须采取适当的防范和检疫措施。</p>
+<p>对于RFC 1149建议的规范，曾经进行过相应的实验：</p>
+<img src="/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/3.jpg" class="" title="test">
+<center>装载数据包</center>
+
+<p>9个报文中4个报文成功传送，丢包率为55%，不过这主要是由于人为操作失误引起的：当天邻居放了一群更大的鸽子，这几只鸽子混到了其他鸽群里；由于太忙，至少两只鸽子因为忘关鸽笼门没带包就起飞了。尽管距离并不远，响应时间仍达到了54分钟到1.77小时。</p>
+<img src="/2022/04/05/%E5%A6%82%E4%BD%95%E7%94%A8%E9%B8%9F%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/4.png" class="" title="test">
+
+<p>相对于RFC 1149提出的采用纸条的传输方式，使用大容量的存储介质可以显著的提升网络的带宽。一张TF卡重约0.25克，假设携带100张1TB的卡的情况下起飞，并曾经测定中等距离下信鸽的平均飞行速度大约每小时30英里，可以测算其带宽大约为$70Gbps$。不过这将会导致丢包的成本难以接受。</p>
+<p>参考游戏未来ラジオと人工鳩的想法，或许采用类似的人造类鸟类承载者(例如游戏中提到的人工鸽子)会有着更好的可行性，可以提高对于网络的管理,提高网络的稳定性和可用性，以及无需克隆装置即可实现组播。具体的系统还未进行详细分析和研究<del>游戏还没玩</del>，不过可以作为相应的参考。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/420793761">什么是“鸟联网”以及如何对它进行改进</a></li>
+<li><a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc1149">RFC 1149</a></li>
+<li><a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc2549">RFC 2549</a></li>
+<li><a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6214">RFC 6214</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1K44y1P7PG?spm_id_from=333.337.search-card.all.click">用鸟类实现网络传输协议</a></li>
+</ul>
+<p>end☆~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+              <a href="/tags/%E6%91%B8%E9%B1%BC/" rel="tag"># 摸鱼</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/01/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85/" rel="prev" title="数位dp的一些补充">
+                  <i class="fa fa-angle-left"></i> 数位dp的一些补充
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/" rel="next" title="凸包算法">
+                  凸包算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">misaka</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"misaka-network10032.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kosaraju算法求解强连通分量">
+<meta property="og:url" content="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/index.html">
+<meta property="og:site_name" content="misaka_10032">
+<meta property="og:description" content="kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.png">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/2.png">
+<meta property="og:image" content="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/3.png">
+<meta property="article:published_time" content="2022-10-19T14:50:57.000Z">
+<meta property="article:modified_time" content="2025-03-16T05:56:18.163Z">
+<meta property="article:author" content="misaka">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.png">
+
+
+<link rel="canonical" href="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/","path":"2022/10/19/kosaraju算法求解强连通分量/","title":"kosaraju算法求解强连通分量"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>kosaraju算法求解强连通分量 | misaka_10032</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">misaka_10032</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="misaka"
+      src="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+  <p class="site-author-name" itemprop="name">misaka</p>
+  <div class="site-description" itemprop="description">褴褛飞旋</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://misaka-network10032.github.io/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+      <meta itemprop="name" content="misaka">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="misaka_10032">
+      <meta itemprop="description" content="褴褛飞旋">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="kosaraju算法求解强连通分量 | misaka_10032">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kosaraju算法求解强连通分量
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-19 22:50:57" itemprop="dateCreated datePublished" datetime="2022-10-19T22:50:57+08:00">2022-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-16 13:56:18" itemprop="dateModified" datetime="2025-03-16T13:56:18+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>kosaraju算法通过对一个有向图的正图和反图两次DFS，从而求解出该有向图的所有强连通分量。</p>
+<span id="more"></span>
+<p>对于无向图连通分量的求解，只需要通过一次对原图的DFS搜索便可以很好的解决，但同样的问题放到有向图身上，就有一点麻烦了，以下面的这个有向图的强连通分量的求解为例：</p>
+<div align="center">
+    <style>.oomgntupptrp{}</style><img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/1.png" class="oomgntupptrp"></img>
+</div>
+
+<p>如果只是简单的在原图上进行DFS的话，可以发现，DFS搜索的时候会横跨两个强连通分量，导致我们无法区分搜索得到的结点是否属于同一个强连通分量。kosaraju算法的想法是，将每一个强连通分量看成是一个大的结点，这样之后，整张图就变成一个有向无环图了，并且在这个DAG中的每条边均是从一个强连通分量指向另一个强连通分量。</p>
+<div align="center">
+    <style>.qvinlrqsuyqj{}</style><img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/2.png" class="qvinlrqsuyqj"></img>
+</div>
+
+<p>并且，在原图中，若存在边<code>(u,v)</code>,即有一条有向边从强连通分量<code>u</code>指向强连通分量<code>v</code>。那么，<code>u</code>的结束时间会大于<code>v</code>的结束时间;换句话说，每条边总是指向结束时间更小的强连通分量。相应的，在转置<code>G^T</code>中，每条边则总是指向结束时间更大的强连通分量。</p>
+<p>那么，选取结束时间最晚的结点，其所对应的强连通分量的结束时间必然是最大的。而在转置<code>G^T</code>中每条边总是指向结束时间更大的强通分量，因为现在考虑的强连通分量已经拥有最大的结束时间，那么就没有从这个强连通分量指向别的强连通分量的边。因此，可以保证对这个选取的顶点做DFS,不会搜索到别的连通分量的顶点。</p>
+<p>由此，可得出kosaraju算法的基本流程：</p>
+<ul>
+<li>对原图进行后序DFS,得到原图的“逆拓扑序”(引号是因为原图中是存在环的，并不存在拓扑排序，当然可以理解成进行缩点之后的连通分量的逆拓扑序)</li>
+<li>将“逆拓扑序”存入栈中，之后从栈顶依次取出，在原图的反图上按照这个顺序进行DFS<br>– 从节点1出发，能走到  2 ，3，4 ， 所以{1 , 2 , 3 , 4 }是一个强连通分量<br>– 从节点5出发，无路可走，所以{ 5 }是一个强连通分量<br>– 从节点6出发，无路可走，所以{ 6 }是一个强连通分量</li>
+</ul>
+<p>自此Kosaraju Algorithm完毕，这个算法只需要两遍DFS即可，是一个比较易懂的求强连通分量的算法。</p>
+<p> 附上一个模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/B3609">洛谷B3609</a>以及AC代码：<br> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; edge;  <span class="comment">//使用邻接表建图</span></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="type">edge_t</span>; <span class="comment">//反图 </span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; visit;</span><br><span class="line">stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;x,vector&lt;<span class="type">int</span>&gt;&amp; y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x[<span class="number">0</span>]&lt;y[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(visit[x]==<span class="number">1</span>)  <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> t=edge[x].<span class="built_in">size</span>();</span><br><span class="line">	visit[x]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">dfs</span>(edge[x][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	s.<span class="built_in">push</span>(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">r_dfs</span><span class="params">(<span class="type">int</span> x,vector&lt;<span class="type">int</span>&gt;&amp; ret)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(visit[x]==<span class="number">1</span>)  <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> t=<span class="type">edge_t</span>[x].<span class="built_in">size</span>();</span><br><span class="line">	visit[x]=<span class="number">1</span>;</span><br><span class="line">	ret.<span class="built_in">emplace_back</span>(x);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">r_dfs</span>(<span class="type">edge_t</span>[x][i],ret);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	edge.<span class="built_in">resize</span>(n);</span><br><span class="line">	<span class="type">edge_t</span>.<span class="built_in">resize</span>(n);</span><br><span class="line">	visit.<span class="built_in">resize</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x,y;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		<span class="keyword">if</span>(x==y)  <span class="keyword">continue</span>;</span><br><span class="line">		edge[x<span class="number">-1</span>].<span class="built_in">emplace_back</span>(y<span class="number">-1</span>);</span><br><span class="line">		<span class="type">edge_t</span>[y<span class="number">-1</span>].<span class="built_in">emplace_back</span>(x<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(visit[i]==<span class="number">1</span>)  <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)  visit[i]=<span class="number">0</span>;</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">	<span class="keyword">while</span>(s.<span class="built_in">empty</span>()==<span class="literal">false</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> t=s.<span class="built_in">top</span>();</span><br><span class="line">		s.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(visit[t]==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			vector&lt;<span class="type">int</span>&gt; temp;</span><br><span class="line">			<span class="built_in">r_dfs</span>(t,temp);</span><br><span class="line">			<span class="built_in">sort</span>(temp.<span class="built_in">begin</span>(),temp.<span class="built_in">end</span>());</span><br><span class="line">			ans.<span class="built_in">emplace_back</span>(temp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans.<span class="built_in">size</span>()&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">sort</span>(ans.<span class="built_in">begin</span>(),ans.<span class="built_in">end</span>(),cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;ans.<span class="built_in">size</span>();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;ans[i].<span class="built_in">size</span>();j++)</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;ans[i][j]<span class="number">+1</span>&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>现在考虑按问题中的方式用原图来做第二次深度优先搜索。注意到在原图中,每条边总是指向结束时间更小的强连通分量。 因此，如果我们能找到结束时间最小的强连通分量，并按照结束时间递增的方式来依次进行dfs，也是能得到各个不同的强连通分量的。但问题是，一个顶点的结束时间是最小的，_并不能保证它所对应的强连通分量的结束时间是最小的_。如下图的例子所示，按照搜索路径<code>1-&gt;3-&gt;5-&gt;8</code>，<code>8</code>是最早结束的结点，但是<code>5-&gt;8</code>并不是最早结束的强连通分量。</p>
+<div align="center">
+    <style>.cbjlgjtorytb{}</style><img src="/2022/10/19/kosaraju%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/3.png" class="cbjlgjtorytb"></img>
+</div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shadowland/p/5876307.html">Kosaraju 算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/chaotalk/article/details/115428271?utm_medium=distribute.wap_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-115428271-blog-109176537.wap_relevant_featuresortv7&spm=1001.2101.3001.4242.1&utm_relevant_index=1">图解：有向环、拓扑排序与Kosaraju算法</a></li>
+</ul>
+<p>end☆~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/23/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/" rel="prev" title="凸包算法">
+                  <i class="fa fa-angle-left"></i> 凸包算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/11/16/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/" rel="next" title="珂朵莉树">
+                  珂朵莉树 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">misaka</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

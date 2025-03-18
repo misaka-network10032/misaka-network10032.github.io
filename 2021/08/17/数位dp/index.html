@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"misaka-network10032.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="数位dp就是套模板 ——lwz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数位dp">
+<meta property="og:url" content="https://misaka-network10032.github.io/2021/08/17/%E6%95%B0%E4%BD%8Ddp/index.html">
+<meta property="og:site_name" content="misaka_10032">
+<meta property="og:description" content="数位dp就是套模板 ——lwz">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://misaka-network10032.github.io/2021/08/17/%E6%95%B0%E4%BD%8Ddp/1.png">
+<meta property="article:published_time" content="2021-08-17T13:24:55.000Z">
+<meta property="article:modified_time" content="2025-03-16T05:58:08.689Z">
+<meta property="article:author" content="misaka">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://misaka-network10032.github.io/2021/08/17/%E6%95%B0%E4%BD%8Ddp/1.png">
+
+
+<link rel="canonical" href="https://misaka-network10032.github.io/2021/08/17/%E6%95%B0%E4%BD%8Ddp/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://misaka-network10032.github.io/2021/08/17/%E6%95%B0%E4%BD%8Ddp/","path":"2021/08/17/数位dp/","title":"数位dp"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数位dp | misaka_10032</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">misaka_10032</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="misaka"
+      src="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+  <p class="site-author-name" itemprop="name">misaka</p>
+  <div class="site-description" itemprop="description">褴褛飞旋</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://misaka-network10032.github.io/2021/08/17/%E6%95%B0%E4%BD%8Ddp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://assets.leetcode.cn/aliyun-lc-upload/users/misaka_net10032/avatar_1603250374.png?x-oss-process=image%2Fformat%2Cwebp">
+      <meta itemprop="name" content="misaka">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="misaka_10032">
+      <meta itemprop="description" content="褴褛飞旋">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数位dp | misaka_10032">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数位dp
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-17 21:24:55" itemprop="dateCreated datePublished" datetime="2021-08-17T21:24:55+08:00">2021-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-16 13:58:08" itemprop="dateModified" datetime="2025-03-16T13:58:08+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>数位dp就是套模板 ——lwz</p>
+<span id="more"></span>
+<p>部分内容参考自洛谷日报第84期[<a target="_blank" rel="noopener" href="https://www.sohu.com/a/273617542_100201031]">https://www.sohu.com/a/273617542_100201031]</a> 以及csdn数位dp总结 之 从入门到模板[<a target="_blank" rel="noopener" href="https://blog.csdn.net/jk211766/article/details/81474632]">https://blog.csdn.net/jk211766/article/details/81474632]</a>, 感谢大佬们的文章，<del>把菜鸡如我从谜语人的深渊中拯救出来</del>接下来将通过对模板本身进行分析，以及通过一些例题来了解如何使用模板来解决问题。<del>用的好甚至可以秒切紫题</del><br>既然是模板，首先当然要清楚数位dp可以用来解决什么样的问题，总结来说，数位dp可以用于解决在给定区间 <code>[A,B]</code> 内，符合条件 <code>f(i)</code> 的数 <code>i</code> 的个数。条件 <code>f(i)</code> 一般与数的大小无关，而与数的组成有关。如同其名字一样，数位dp便是按照数位来进行dp状态的分析和转移。数位dp解决的问题很多时候都有着人畜无害的外衣，<del>当然更多的外表狰狞</del>甚至直接的暴力方法都仅有O(n)的时间复杂度。但是当这些问题的规模变大，即当n在10^19的级别下，O(n)的时间复杂度就完全无法应对，而数位dp是按位dp，数的大小对复杂度的影响很小，很多情况下能够达到O(log(n))级别，用来解决这样的问题再合适不过了。<br>从起点向下搜索，到最底层得到方案数，一层一层向上返回答案并累加，最后从搜索起点得到最终答案。这便是数位dp解决问题的过程。而对于 <code>[l,r]</code> 区间问题，我们一般把他转化为两次数位dp,即找 <code>[0,r]</code> 和 <code>[0,l-1]</code> 两段，再将结果相减就得到了我们需要的 <code>[l,r]</code>。<br>如同大多数dp一般，数位dp有两种实现方式，递推和记忆化搜索。我个人更喜欢记忆化搜索，同时相比递推方式，记忆化搜索更适合作为模板，因此接下来的数位dp的模板以记忆化搜索的形式呈现。<br>首先我们从这道题开始了解数位dp:<del>万恶之源</del>leetcode 233题[<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-digit-one/]">https://leetcode-cn.com/problems/number-of-digit-one/]</a><br>题目描述：<br>给定一个整数 n，计算所有小于等于 n 的非负整数中数字 1 出现的个数。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：n &#x3D; 13<br>输出：6<br>示例 2：</p>
+<p>输入：n &#x3D; 0<br>输出：0
+ </p>
+<p>提示：</p>
+<p>0 &lt;&#x3D; n &lt;&#x3D; 10^9</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-digit-one">https://leetcode-cn.com/problems/number-of-digit-one</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br>这道题在leetcode上的标签是<font color=red>困难</font>，类似的题在洛谷上的标签是<font color=red>入门</font>。<del>都是红色的233</del>正是<code>10^9</code>的数据范围，使得直接的暴力算法无法达到要求。从这道条件比较简单的题开始，对模板涉及到的内容进行分析。先附上AC代码，并将其作为基础模板：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="type">int</span> dp[<span class="number">15</span>][<span class="number">15</span>];</span><br><span class="line"><span class="type">int</span> num[<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> sum,<span class="type">int</span> limit)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pos==<span class="number">0</span>)  <span class="keyword">return</span> sum;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; dp[pos][sum]!=<span class="number">-1</span>)  <span class="keyword">return</span> dp[pos][sum];</span><br><span class="line">    <span class="type">int</span> up=<span class="number">9</span>;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">1</span>) up=num[pos];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=up;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,sum+(i==<span class="number">1</span>),i==up &amp;&amp; limit);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span>)  dp[pos][sum]=ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> pos=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        pos++;</span><br><span class="line">        num[pos]=n%<span class="number">10</span>;</span><br><span class="line">        n=n/<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dp));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(pos,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">执行用时: <span class="number">0</span> ms  ~~叉腰（。＾▽＾）~~</span><br><span class="line">内存消耗: <span class="number">5.9</span> MB</span><br></pre></td></tr></table></figure>
+<p>从核心的dfs部分开始看。dfs部分<code>dfs(int pos,int sum,int limit)</code>涉及到三个参数，pos,sum以及limit。其中pos表示当前的数位，我们从最高位开始进行dp，sum表示当前状态数码1的个数，是对应这道题目要求而增添的变量，limit表示当前状态是否达到最高位限制。这三个参数中，需要进行解释的主要是limit参数。</p>
+<p>一·最高位标记limit<br>在搜索的数位的过程中，搜索范围可能发生变化。</p>
+<p>举个例子：我们在搜索 <code>[0,555]</code> 的数时，显然最高位搜索范围是 0 ~ 5 ，而后面的位数的取值范围会根据上一位发生变化：<br>·当最高位是 1 ~ 4 时，第二位取值为 [0,9] ;<br>·当最高位是 5 时，第二位取值为 [0,5] （再往上取就超出右端点范围了）<br>为了分清这两种情况，我们引入了 <code>limit</code> 标记：</p>
+<p>·若当前位 limit&#x3D;1 而且已经取到了能取到的最高位时，下一位 limit&#x3D;1 ；<br>·若当前位 limit&#x3D;1 但是没有取到能取到的最高位时，下一位 limit&#x3D;0 ；<br>·若当前位 limit&#x3D;0 时，下一位 limit&#x3D;0 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> up=<span class="number">9</span>;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">1</span>) up=num[pos];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>这一部分中的up变量便是表示当前能取到的最高位数，下一位limit的状态自然是<code>i==up &amp;&amp; limit</code>。<br>接下来还有一个需要分析的地方：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; dp[pos][sum]!=<span class="number">-1</span>)  <span class="keyword">return</span> dp[pos][sum];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(limit==<span class="number">0</span>)  dp[pos][sum]=ans;</span><br></pre></td></tr></table></figure>
+<p>也就是dp值的保存和取用问题。<br>举个例子：<br>假设存在如下约束：数位上不能出现连续的两个1(11、112、211都是不合法的)</p>
+<p>假设就是[1,210]这个区间的个数</p>
+<p>状态:dp[pos][pre]:当前枚举到pos位，前面一位枚举的是pre(更加前面的位已经合法了)，的个数(假设pos从0开始)。</p>
+<p>先看错误的方法计数，就是不判limit就是直接记忆化。</p>
+<p>那么假设我们第一次枚举了百位是0，显然后面的枚举limit&#x3D;false，也就是数位上0到9的枚举，然后当我十位枚举了1，此时考虑<code>dp[0][1]</code>,就是枚举到个位，前一位是1的个数，显然<code>dp[0][1]=9</code>;(个位只有是1的时候是不满足的)，这个状态记录下来，继续dfs，一直到百位枚举了2，十位枚举了1，显然此时递归到了<code>pos=0</code>,<code>pre=1</code>的层，而<code>dp[0][1]</code>的状态已经有了即<code>dp[pos][pre]!=-1</code>；此时程序直接<code>return dp[0][1]</code>了，然而显然是错的，因为此时是有limit的个位只能枚举0，根本没有9个数，状态之间存在冲突。(也可以从上面第一题从数学的角度分析一下，我们记录的是0~9这样的重复状态，而limit&#x3D;&#x3D;1实际上是属于特殊状态)因此我们可以得到一个结论：当 limit&#x3D;1 时，不能记录和取用dp值。<br>类似上述的分析过程，我们也可以得出：当 lead&#x3D;1 时，也不能记录和取用dp值。(lead用于表示前导零，在后面会讲到，提到时可以翻回来看看)<br>当然也没有这么绝对，一起都是以实际题目为准。<br>由此我们发现，模板中需要根据实际情况修改的部分就是下面这一部分：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=up;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,sum+(i==<span class="number">1</span>),i==up &amp;&amp; limit);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>根据实际题目要求，修改其中的约束条件，就可以利用模板来解决问题了。</p>
+<p>接下来再看看另一个重要参数，也就是前面提到的lead。</p>
+<p>二·前导0标记lead<br>举个例子：假如我们要从 <code>[0,1000]</code> 找任意相邻两数相等的数</p>
+<p>显然 <code>111</code>,<code>222</code>,<code>888</code> 等等是符合题意的数</p>
+<p>但是我们发现右端点 <code>1000</code> 是四位数</p>
+<p>因此我们搜索的起点是 <code>0000</code> ，而三位数的记录都是 <code>0111</code>,<code>0222</code>,<code>0888</code> 等等</p>
+<p>而这种情况下如果我们直接找相邻位相等则 <code>0000</code> 符合题意而 <code>0111</code>,<code>0222</code>,<code>0888</code> 都不符合题意了</p>
+<p>所以我们要加一个前导0标记</p>
+<p>·如果当前位 <code>lead=1</code> 而且当前位也是0，那么当前位也是前导0， <code>pos+1</code> 继续搜；<br>·如果当前位 <code>lead=1</code> 但当前位不是0，则本位作为当前数的最高位， <code>pos+1</code> 继续搜；（注意这次根据题意其他参数可能发生变化）<br>当然前导 0 有时候是不需要判断的，上述的例子是一个有关数字结构上的性质，0会影响数字的结构，所以必须判断前导0；而如果我们研究的是数字的组成（例如这个数字有多少个 1 之类的问题），0并不影响我们的判断，这样就不需要前导0标记了。</p>
+<p>接下来看一个前导零的例子：leetcode 902[<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set/]">https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set/]</a> <del>这几个题号都好有梗啊233</del><br>题目描述：<br>我们有一组排序的数字 D，它是  {‘1’,’2’,’3’,’4’,’5’,’6’,’7’,’8’,’9’} 的非空子集。（请注意，’0’ 不包括在内。）</p>
+<p>现在，我们用这些数字进行组合写数字，想用多少次就用多少次。例如 D &#x3D; {‘1’,’3’,’5’}，我们可以写出像 ‘13’, ‘551’, ‘1351315’ 这样的数字。</p>
+<p>返回可以用 D 中的数字写出的小于或等于 N 的正整数的数目。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：D &#x3D; [“1”,”3”,”5”,”7”], N &#x3D; 100<br>输出：20<br>解释：<br>可写出的 20 个数字是：<br>1, 3, 5, 7, 11, 13, 15, 17, 31, 33, 35, 37, 51, 53, 55, 57, 71, 73, 75, 77.<br>示例 2：</p>
+<p>输入：D &#x3D; [“1”,”4”,”9”], N &#x3D; 1000000000<br>输出：29523<br>解释：<br>我们可以写 3 个一位数字，9 个两位数字，27 个三位数字，<br>81 个四位数字，243 个五位数字，729 个六位数字，<br>2187 个七位数字，6561 个八位数字和 19683 个九位数字。<br>总共，可以使用D中的数字写出 29523 个整数。
+ </p>
+<p>提示：</p>
+<p>D 是按排序顺序的数字 ‘1’-‘9’ 的子集。<br>1 &lt;&#x3D; N &lt;&#x3D; 10^9</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set">https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br>AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="type">int</span> in[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> dp[<span class="number">15</span>];</span><br><span class="line"><span class="type">int</span> nums[<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> limit,<span class="type">int</span> lead)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pos==<span class="number">0</span>)  <span class="keyword">return</span> !lead;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; lead==<span class="number">0</span> &amp;&amp; dp[pos]!=<span class="number">-1</span>)  <span class="keyword">return</span> dp[pos];</span><br><span class="line">    <span class="type">int</span> up=<span class="number">9</span>;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">1</span>) up=nums[pos];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=up;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(lead==<span class="number">1</span> &amp;&amp; i==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,limit &amp;&amp; i==up,lead &amp;&amp; i==<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(in[i]==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,limit &amp;&amp; i==up, lead &amp;&amp; i==<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; lead==<span class="number">0</span>)  dp[pos]=ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">atMostNGivenDigitSet</span><span class="params">(vector&lt;string&gt;&amp; digits, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> size=digits.<span class="built_in">size</span>();</span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dp));</span><br><span class="line">    <span class="built_in">memset</span>(in,<span class="number">0</span>,<span class="built_in">sizeof</span>(in));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;size;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        in[digits[i][<span class="number">0</span>]-<span class="string">&#x27;0&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> pos=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        pos++;</span><br><span class="line">        nums[pos]=n%<span class="number">10</span>;</span><br><span class="line">        n=n/<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(pos,<span class="number">1</span>,<span class="number">1</span>);<span class="comment">//最高位默认有前导零</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>其中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(lead==<span class="number">1</span> &amp;&amp; i==<span class="number">0</span>)</span><br><span class="line">       &#123;</span><br><span class="line">           ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,limit &amp;&amp; i==up,lead &amp;&amp; i==<span class="number">0</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span>(in[i]==<span class="number">1</span>)</span><br><span class="line">       &#123;</span><br><span class="line">           ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,limit &amp;&amp; i==up, lead &amp;&amp; i==<span class="number">0</span>);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p>便是增加前导零后的处理逻辑的变化，至于具体的要根据实际情况来进行变化。</p>
+<p>另外对于状态的记录，最好把所有的额外状态都进行记录，避免状态存在重复和遗漏。虽然这会增加记录数组的维数，但是一般增加的状态都是<code>0,1</code>状态，所以内存方面不会有太多的压力。<br>数位dp的状态能记录的最好都记录上 ——lwz </p>
+<p>附上洛谷制作的搜索步骤的图：</p>
+<img src="/2021/08/17/%E6%95%B0%E4%BD%8Ddp/1.png" class="" title="test">
+
+<p>接下来就可以利用模板刷题了，随着使用的次数++，熟练度也会不断++的。数位dp说难也难，说难也不难，通过大量的练习就可以熟练掌握。<del>切紫题指日可待</del></p>
+<p>接下来在来个例子： [HDU3555] [<a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/showproblem.php?pid=3555%5D">https://acm.hdu.edu.cn/showproblem.php?pid=3555]</a><br>题目描述：<br>Time Limit: 2000&#x2F;1000 MS (Java&#x2F;Others)    Memory Limit: 131072&#x2F;65536 K (Java&#x2F;Others)<br>Total Submission(s): 32756    Accepted Submission(s): 12565</p>
+<p>Problem Description<br>The counter-terrorists found a time bomb in the dust. But this time the terrorists improve on the time bomb. The number sequence of the time bomb counts from 1 to N. If the current number sequence includes the sub-sequence “49”, the power of the blast would add one point.<br>Now the counter-terrorist knows the number N. They want to know the final points of the power. Can you help them?</p>
+<p>Input<br>The first line of input consists of an integer T (1 &lt;&#x3D; T &lt;&#x3D; 10000), indicating the number of test cases. For each test case, there will be an integer N (1 &lt;&#x3D; N &lt;&#x3D; 2^63-1) as the description.</p>
+<p>The input terminates by end of file marker.</p>
+<p>Output<br>For each test case, output an integer indicating the final points of the power.</p>
+<p>Sample Input<br>3<br>1<br>50<br>500</p>
+<p>Sample Output<br>0<br>1<br>15</p>
+<p>Hint<br>From 1 to 500, the numbers that include the sub-sequence “49” are “49”,”149”,”249”,”349”,”449”,”490”,”491”,”492”,”493”,”494”,”495”,”496”,”497”,”498”,”499”,<br>so the answer is 15.</p>
+<p>Author<br>fatboy_cw@WHU</p>
+<p>Source<br>2010 ACM-ICPC Multi-University Training Contest（12）——Host by WHU</p>
+<p>Recommend<br>zhouzeyong<br>因为查找的数是一个两位数，所以我们增加pre参数，表示当前数位的前一位，来帮助进行约束判断。AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> num[<span class="number">30</span>];</span><br><span class="line"><span class="type">int</span> dp[<span class="number">30</span>][<span class="number">20</span>][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> pre,<span class="type">int</span> limit,<span class="type">int</span> check)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pos==<span class="number">0</span>)  <span class="keyword">return</span> check;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; dp[pos][pre][check]!=<span class="number">-1</span>)  <span class="keyword">return</span> dp[pos][pre][check];</span><br><span class="line">    <span class="type">int</span> up=<span class="number">9</span>;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">1</span>)  up=num[pos];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=up;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,i,i==up &amp;&amp; limit,((i==<span class="number">9</span>) &amp;&amp; (pre==<span class="number">4</span>)) || check);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span>)   dp[pos][pre][check]=ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    cin&gt;&gt;t;</span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dp));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x;</span><br><span class="line">        cin&gt;&gt;x;</span><br><span class="line">        <span class="type">int</span> pos=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x!=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            pos++;</span><br><span class="line">            num[pos]=x%<span class="number">10</span>;</span><br><span class="line">            x=x/<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;<span class="built_in">dfs</span>(pos,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>)&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后再来道<font color=purple>紫题</font>: [luoguP4124] [CQOI2016]手机号码<br>题目描述：<br>人们选择手机号码时都希望号码好记、吉利。比如号码中含有几位相邻的相同数字、不含谐音不吉利的数字等。手机运营商在发行新号码时也会考虑这些因素，从号段中选取含有某些特征的号码单独出售。为了便于前期规划，运营商希望开发一个工具来自动统计号段中满足特征的号码数量。</p>
+<p>工具需要检测的号码特征有两个：号码中要出现至少 3 个相邻的相同数字；号码中不能同时出现 8 和 4。号码必须同时包含两个特征才满足条件。满足条件的号码例如：13000988721、23333333333、14444101000。而不满足条件的号码例如：1015400080、10010012022。</p>
+<p>手机号码一定是 11 位数，前不含前导的 0。工具接收两个数 L 和 R，自动统计出 [L,R] 区间内所有满足条件的号码数量。L 和 R 也是 11 位的手机号码。</p>
+<p>输入格式<br>输入文件内容只有一行，为空格分隔的 2 个正整数 L,R。</p>
+<p>输出格式<br>输出文件内容只有一行，为 1 个整数，表示满足条件的手机号数量。</p>
+<p>输入输出样例<br>输入 #1<br>12121284000 12121285550<br>输出 #1<br>5<br>说明&#x2F;提示<br>样例解释：满足条件的号码： 12121285000、 12121285111、 12121285222、 12121285333、 12121285550。</p>
+<p>数据范围：10^10 ≤L≤R&lt;10^11</p>
+<p>只需要增加check8，check4，连续段检查三个状态，同时注意前导零的处理就可以了，紫题get√<br>AC代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> dp[<span class="number">20</span>][<span class="number">20</span>][<span class="number">20</span>][<span class="number">2</span>][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> num[<span class="number">60</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> pre1,<span class="type">int</span> pre2,<span class="type">int</span> limit,<span class="type">int</span> lead,<span class="type">int</span> check8,<span class="type">int</span> check4,<span class="type">int</span> checkll)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pos==<span class="number">0</span>)  <span class="keyword">return</span> checkll &amp;&amp; !(check4==<span class="number">1</span> &amp;&amp; check8==<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; lead==<span class="number">0</span> &amp;&amp; dp[pos][pre1][pre2][check8][check4][checkll]!=<span class="number">-1</span>)  <span class="keyword">return</span> dp[pos][pre1][pre2][check8][check4][checkll];</span><br><span class="line">    <span class="type">int</span> up=<span class="number">9</span>;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">1</span>) up=num[pos];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=up;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(lead==<span class="number">1</span> &amp;&amp; i==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,pre2,i,limit &amp;&amp; i==up,lead &amp;&amp; i==<span class="number">0</span>,check8,check4,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(lead==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">        	ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,pre2,i,limit &amp;&amp; i==up,lead &amp;&amp; i==<span class="number">0</span>,check8 || i==<span class="number">8</span>,check4 || i==<span class="number">4</span>,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            ans=ans+<span class="built_in">dfs</span>(pos<span class="number">-1</span>,pre2,i,limit &amp;&amp; i==up,lead &amp;&amp; i==<span class="number">0</span>,check8 || i==<span class="number">8</span>,check4 || i==<span class="number">4</span>,checkll ||(i==pre2 &amp;&amp; pre2==pre1));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(limit==<span class="number">0</span> &amp;&amp; lead==<span class="number">0</span>)  dp[pos][pre1][pre2][check8][check4][checkll]=ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> pos=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x!=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        pos++;</span><br><span class="line">        num[pos]=x%<span class="number">10</span>;</span><br><span class="line">        x=x/<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(pos,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> x,y;</span><br><span class="line">    cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dp));</span><br><span class="line">    cout&lt;&lt;<span class="built_in">solve</span>(y)-<span class="built_in">solve</span>(x<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>end☆~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/02/happy-birthday/" rel="prev" title="happy birthday!">
+                  <i class="fa fa-angle-left"></i> happy birthday!
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/08/AStar%E3%80%81%E5%8F%8C%E5%90%91bfs/" rel="next" title="AStar、双向bfs">
+                  AStar、双向bfs <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">misaka</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
